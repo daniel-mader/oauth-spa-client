@@ -66,10 +66,14 @@
       "as-needed"
     ],
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
+    "ordered-imports": true,
     "quotemark": [
       true,
       "single"
+    ],
+    "whitespace": [
+      true,
+      "check-module"
     ],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
