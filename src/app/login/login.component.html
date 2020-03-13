@@ -1,23 +1,30 @@
 <h2 class="title">Login</h2>
 
 <mat-card class="login-card mat-elevation-z4">
+  <form class="flex-column">
 
-  <mat-form-field appearance="outline" color="primary">
-    <mat-label>username</mat-label>
-    <input matInput placeholder="">
-<!--    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="primary">
-    <mat-label>password</mat-label>
-    <input matInput placeholder="">
-<!--    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
-  </mat-form-field>
+    <mat-form-field appearance="outline" color="primary" class="form-field">
+      <mat-label>username</mat-label>
+      <input matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="primary" class="form-field">
+      <mat-label>password</mat-label>
+      <input matInput placeholder="" [type]="showPassword ? 'text' : 'password'">
+      <!-- show password toggle -->
+      <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword"
+              [attr.aria-label]="'Show password'" [attr.aria-pressed]="showPassword">
+        <mat-icon>{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </button>
+    </mat-form-field>
 
 <!--  <mat-divider></mat-divider>-->
 
 <!--  <mat-card-footer>-->
-    <button mat-flat-button color="accent">Login</button>
+    <button mat-flat-button class="button-login" color="accent">Login</button>
 <!--    <button mat-flat-button color="accent">accent</button>-->
 <!--    <button mat-flat-button color="warn">warn</button>-->
 <!--  </mat-card-footer>-->
+
+  </form>
 </mat-card>
