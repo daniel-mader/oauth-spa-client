@@ -1,18 +1,20 @@
-<div class="mat-app-background"> <!-- sets background according to theme -->
+<div [ngClass]="{'obsidian-dark': isDarkTheme$ | async}">
+  <div class="mat-app-background"> <!-- sets background according to theme -->
 
-  <app-nav-bar></app-nav-bar>
+    <app-nav-bar></app-nav-bar>
 
-  <div fxLayout="row" fxLayoutAlign="space-around center" style="height: 80%;">
-    <app-login></app-login>
+    <div fxLayout="row" fxLayoutAlign="space-around center" style="height: 80%;">
+      <app-login></app-login>
 
-<!--    <div class="vertical-divider"></div>-->
-    <mat-icon style="color: #888888">double_arrow</mat-icon>
+  <!--    <div class="vertical-divider"></div>-->
+      <mat-icon style="color: #888888">double_arrow</mat-icon>
 
-    <app-jwt-visualizer class="fill-space-horizontal" fxLayout="column"></app-jwt-visualizer>
+      <app-jwt-visualizer class="fill-space-horizontal" fxLayout="column"></app-jwt-visualizer>
+    </div>
+
+    <hr>
+
+    <router-outlet></router-outlet>
+
   </div>
-
-  <hr>
-
-  <router-outlet></router-outlet>
-
 </div>

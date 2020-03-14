@@ -14,9 +14,12 @@
   <mat-toolbar>
     <span>Settings</span>
     <span class="fill-remaining-space"></span>
-    <span>set flow</span>
-    <span>dark mode</span>
+    <mat-slide-toggle [checked]="isDarkTheme" (change)="toggleDarkTheme($event.checked)">Dark theme</mat-slide-toggle>
+  </mat-toolbar>
+
+  <mat-toolbar>
     <span>save creds</span>
     <span>omit signature</span>
+    <span>set flow</span>
   </mat-toolbar>
 </ng-container>
