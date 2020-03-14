@@ -1,9 +1,6 @@
 <div class="mat-app-background"> <!-- sets background according to theme -->
-  <mat-toolbar color="primary">
-    <span>OAuth Test Client</span>
-    <span class="fill-remaining-space"></span>
-    <h3 class="subheading-2">for demo purposes only!</h3>
-  </mat-toolbar>
+
+  <app-nav-bar></app-nav-bar>
 
   <mat-grid-list cols="2">
     <mat-grid-tile class="border-right">
@@ -13,7 +10,7 @@
     <!-- vertical divider here -->
 
     <mat-grid-tile>
-      <app-jwt-visualizer></app-jwt-visualizer>
+      <app-jwt-visualizer class="fill-space"></app-jwt-visualizer>
     </mat-grid-tile>
   </mat-grid-list>
 

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>OAuth Test Client</span>
+    <span class="fill-remaining-space"></span>
+    <button mat-icon-button color="" type="button" aria-label="Example icon-button with a heart icon"
+            (click)="onClickSettings()">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <!--      <h3 class="subheading-2">for demo purposes only!</h3>-->
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<ng-container *ngIf="showSettings">
+  <mat-toolbar>
+    <span>Settings</span>
+    <span class="fill-remaining-space"></span>
+    <span>set flow</span>
+    <span>dark mode</span>
+  </mat-toolbar>
+</ng-container>

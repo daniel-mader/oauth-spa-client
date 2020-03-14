@@ -16,12 +16,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtVisualizerComponent } from './jwt-visualizer/jwt-visualizer.component';
 import { LoginComponent } from './login/login.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    JwtVisualizerComponent
+    JwtVisualizerComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

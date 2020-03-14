@@ -2,10 +2,17 @@
   height: 100%;
 }
 
-.fill-remaining-space {
-  flex: 1 1 auto;
-}
+//.fill-remaining-space {
+//  flex: 1 1 auto;
+//}
 
 .border-right {
   border-right: 1px dashed #24292e;
+}
+
+.fill-space {
+  width: calc(100% - 25px);
+  height: calc(100% - 100px);
+  //width: 90%;
+  //height: 100%;
 }
