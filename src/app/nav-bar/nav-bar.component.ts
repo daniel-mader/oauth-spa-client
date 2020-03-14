@@ -13,6 +13,10 @@ export class NavBarComponent implements OnInit {
   isDarkTheme$: Observable<boolean>;
   isDarkTheme: boolean;
 
+  flows = [
+    {value: 'implicit', viewAs: 'Implicit Flow'}
+  ];
+
   constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {

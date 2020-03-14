@@ -18,8 +18,21 @@
   </mat-toolbar>
 
   <mat-toolbar>
-    <span>save creds</span>
-    <span>omit signature</span>
-    <span>set flow</span>
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+      <mat-slide-toggle disabled>Save credentials</mat-slide-toggle>
+      <mat-slide-toggle disabled>Omit signature</mat-slide-toggle>
+      <div>
+
+        <mat-form-field>
+          <mat-label>Select OAuth Flow</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let flow of flows" [value]="flow.value">
+              {{ flow.viewAs }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
   </mat-toolbar>
 </ng-container>
