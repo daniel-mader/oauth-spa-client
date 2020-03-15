@@ -4,7 +4,16 @@
 <!--  <pre>{{ exampleJwt | json }}</pre>-->
 <!--</div>-->
 
+<mat-card>
+  has valid idToken: {{ hasValidIdToken }}
+</mat-card>
+
 <!-- TODO: Alternative: mat-card -->
 <mat-card class="fill-height mat-elevation-z4">
-  <pre>{{ exampleJwt | json }}</pre>
+<!--  <pre>{{ exampleJwt | json }}</pre>-->
+  <pre>{{ identityClaims | json }}</pre>
+</mat-card>
+
+<mat-card>
+  PKCI Verifier: {{ pkciVerifier }}
 </mat-card>

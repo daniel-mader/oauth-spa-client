@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  showPassword = false;
+  userInfo: UserInfo;
+  identityClaims: object;
 
-  constructor() { }
+  constructor(private oAuthService: OAuthService) {
+  }
 
   ngOnInit(): void {
-    console.log('init');
+    this.identityClaims = this.oAuthService.getIdentityClaims();
+    // this.oAuthService.loadUserProfile().then((userInfo) => {
+    //   console.log(userInfo);
+    //   this.userInfo = userInfo;
+    // });
+  }
+
+  onClickDestroySession(): void {
+    this.oAuthService.logOut();
   }
 
 }

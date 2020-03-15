@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-jwt-visualizer',
@@ -7,23 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JwtVisualizerComponent implements OnInit {
 
-  exampleJwt = {
-    header: {
-      alg: 'HS256',
-      typ: 'JWT'
-    },
-    payload: {
-      sub: '1234567890',
-      name: 'John Doe',
-      iat: 1516239022
-    },
-    signature: {
-    }
-  };
+  identityClaims: object;
+  pkciVerifier: string;
+  hasValidIdToken: boolean;
 
-  constructor() { }
+  constructor(private oAuthService: OAuthService) { }
 
   ngOnInit(): void {
+    this.hasValidIdToken = this.oAuthService.hasValidIdToken();
+    this.identityClaims = this.oAuthService.getIdentityClaims();
+    this.pkciVerifier = sessionStorage.getItem('PKCI_verifier');
   }
 
 }
