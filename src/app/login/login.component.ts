@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
+import { logout } from '../+state/actions';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
   identityClaims: object;
   isLoggedIn: boolean;
 
-  constructor(private oAuthService: OAuthService) {
+  constructor(private oAuthService: OAuthService, private store: Store) {
   }
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onClickDestroySession(): void {
+    this.store.dispatch(logout());
     this.oAuthService.logOut();
   }
 

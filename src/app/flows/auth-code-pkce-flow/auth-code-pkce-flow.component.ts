@@ -21,6 +21,7 @@ export class AuthCodePkceFlowComponent implements OnInit {
     console.log('Configuring Auth Code Flow with PKCE ...');
     this.oAuthService.configure(authCodePkceFlowConfig);
     console.log('Loading Discovery Document ...');
+    console.log(authCodePkceFlowConfig);
     this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(
       () => {
         console.log('Init Code Flow ...');

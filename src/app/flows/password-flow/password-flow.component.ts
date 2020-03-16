@@ -22,7 +22,8 @@ export class PasswordFlowComponent implements OnInit {
     password: new FormControl('alice', [Validators.required])
   });
 
-  constructor(private oAuthService: OAuthService, private store: Store) { }
+  constructor(private oAuthService: OAuthService, private store: Store) {
+  }
 
   ngOnInit(): void {
     this.store.pipe(select(selectDefaultIssuer)).subscribe((issuer) => {
@@ -33,14 +34,16 @@ export class PasswordFlowComponent implements OnInit {
   onSubmit(): void {
     console.log('Configuring Password Flow ...');
     this.oAuthService.configure({...passwordFlowConfig, issuer: this.issuer});
+    console.log({...passwordFlowConfig, issuer: this.issuer});
     this.oAuthService.loadDiscoveryDocumentAndTryLogin();
 
     const username = this.passwordLoginForm.get('username').value;
     const password = this.passwordLoginForm.get('password').value;
     this.oAuthService.fetchTokenUsingPasswordFlow(username, password).then(r => {
-      console.log('r', r);
-      this.serverResponse = r;
-    });
+        console.log('r', r);
+        this.serverResponse = r;
+      },
+      () => console.log('error'));
   }
 
 }

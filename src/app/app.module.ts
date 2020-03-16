@@ -27,7 +27,7 @@ import { AppComponent } from './app.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
 import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
 import { PasswordFlowComponent } from './flows/password-flow/password-flow.component';
-import { JwtVisualizerComponent } from './jwt-visualizer/jwt-visualizer.component';
+import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
 import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 import { metaReducers, reducers } from './+state/reducers';
