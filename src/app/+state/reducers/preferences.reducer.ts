@@ -27,7 +27,7 @@ const preferencesReducer = createReducer(
   initialState,
   on(Actions.setDarkMode, (state, {isDarkMode}) => ({...state, isDarkMode})),
   on(Actions.setIssuer, (state, {issuer}) => ({...state, issuer})),
-  on(Actions.toggleSettingsDrawer, (state) => ({...state, settingsDrawerOpen: !state.settingsDrawerOpen})),
+  on(Actions.toggleSettingsDrawer, (state, {isOpen}) => ({...state, settingsDrawerOpen: isOpen})),
   on(Actions.updateDisplayedFlows, (state, {authcodepkce, implicit, password}) => ({
       ...state, displayedFlows: {authcodepkce, implicit, password}
     })

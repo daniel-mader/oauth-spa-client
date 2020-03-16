@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { toggleSettingsDrawer } from './+state/actions';
 import { selectDarkMode, selectSettingsDrawerOpen } from './+state/selectors';
 import { PreferencesService } from './services/preferences.service';
 
@@ -23,5 +24,9 @@ export class AppComponent implements OnInit {
     this.store.pipe(select(selectSettingsDrawerOpen)).subscribe((opened) => {
       this.opened = opened;
     });
+  }
+
+  onCloseSideNav(): void {
+    this.store.dispatch(toggleSettingsDrawer({isOpen: false}));
   }
 }

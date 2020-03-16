@@ -2,9 +2,10 @@
   <mat-toolbar-row>
     <span>OAuth Test Client</span>
     <span class="fill-remaining-space"></span>
-    <button mat-icon-button color="" type="button" aria-label="Example icon-button with a heart icon"
-            (click)="onClickSettings()">
-      <mat-icon>settings</mat-icon> <!-- TODO: Material Animation here -->
-    </button>
+    <div [@openClose]="isSettingsOpen ? 'open' : 'closed'">
+      <button mat-icon-button color="" type="button" aria-label="open settings" (click)="onClickSettings()">
+        <mat-icon>{{ isSettingsOpen ? 'close' : 'settings' }}</mat-icon>
+      </button>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
