@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ThemeService } from './settings/services/theme.service';
+import { selectDarkMode, selectSettingsDrawerOpen } from './+state/selectors';
+import { PreferencesService } from './services/preferences.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,16 @@ import { ThemeService } from './settings/services/theme.service';
 export class AppComponent implements OnInit {
   title = 'oauth-spa-client';
 
-  isDarkTheme$: Observable<boolean>;
+  isDarkTheme$: Observable<boolean> = this.store.pipe(select(selectDarkMode));
+  opened: boolean;
 
-  constructor(private themeService: ThemeService) {
+  constructor(private store: Store, private preferencesService: PreferencesService) {
   }
 
   ngOnInit(): void {
-    this.isDarkTheme$ = this.themeService.isDarkTheme$;
+    this.preferencesService.loadFileToStore();
+    this.store.pipe(select(selectSettingsDrawerOpen)).subscribe((opened) => {
+      this.opened = opened;
+    });
   }
 }

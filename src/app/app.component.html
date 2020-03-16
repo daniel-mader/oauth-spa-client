@@ -3,18 +3,24 @@
 
     <app-nav-bar></app-nav-bar>
 
-    <div fxLayout="row" fxLayoutAlign="space-around center" style="height: 80%;">
-      <app-login fxLayout="column" fxLayoutAlign="space-between" style="height: 600px;"></app-login>
+    <mat-sidenav-container [hasBackdrop]="true">
+      <mat-sidenav mode="over" [(opened)]="opened" position="end">
+        <app-side-nav></app-side-nav>
+      </mat-sidenav>
 
-  <!--    <div class="vertical-divider"></div>-->
-      <mat-icon style="color: #888888">double_arrow</mat-icon>
+      <mat-sidenav-content>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <app-login fxLayout="column" fxLayoutAlign="space-between" style="height: 80vh;"></app-login>
 
-      <app-jwt-visualizer class="fill-space-horizontal" fxLayout="column"></app-jwt-visualizer>
-    </div>
+          <!--    <div class="vertical-divider"></div>-->
+          <mat-icon style="color: #888888">double_arrow</mat-icon>
 
-    <hr>
+          <app-jwt-visualizer class="fill-space-horizontal" fxLayout="column"></app-jwt-visualizer>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
 
-    <router-outlet></router-outlet>
+    <hr><pre>router-outlet:</pre><router-outlet></router-outlet>
 
   </div>
 </div>

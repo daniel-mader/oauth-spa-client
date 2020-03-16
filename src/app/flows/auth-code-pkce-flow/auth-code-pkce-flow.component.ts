@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { PreferencesService } from '../../services/preferences.service';
 import { authCodePkceFlowConfig } from './auth-code-pkce-flow-config';
 
 @Component({
@@ -9,7 +10,7 @@ import { authCodePkceFlowConfig } from './auth-code-pkce-flow-config';
 })
 export class AuthCodePkceFlowComponent implements OnInit {
 
-  constructor(private oAuthService: OAuthService) {
+  constructor(private oAuthService: OAuthService, private preferences: PreferencesService) {
   }
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class AuthCodePkceFlowComponent implements OnInit {
   initAuthCodeFlow(): void {
     console.log('Configuring Auth Code Flow with PKCE ...');
     this.oAuthService.configure(authCodePkceFlowConfig);
+    console.log('Loading Discovery Document ...');
     this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(
       () => {
         console.log('Init Code Flow ...');

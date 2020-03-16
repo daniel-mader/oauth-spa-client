@@ -7,4 +7,4 @@
 <!--  id claims (payload of id_token): <pre>{{ identityClaims | json }}</pre>-->
 </mat-card>
 
-<button mat-flat-button type="button" color="warn" (click)="onClickDestroySession()">Logout</button>
+<button mat-flat-button type="button" color="warn" [disabled]="!isLoggedIn" (click)="onClickDestroySession()">Logout</button>

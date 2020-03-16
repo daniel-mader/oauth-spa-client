@@ -1,0 +1,9 @@
+{
+  "darkMode": false,
+  "defaultIssuer": "https://demo.identityserver.io",
+  "showFlows": {
+    "authCodePkce": true,
+    "implicit": true,
+    "passwordCredential": true
+  }
+}

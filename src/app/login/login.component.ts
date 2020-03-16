@@ -10,12 +10,19 @@ export class LoginComponent implements OnInit {
 
   userInfo: UserInfo;
   identityClaims: object;
+  isLoggedIn: boolean;
 
   constructor(private oAuthService: OAuthService) {
   }
 
   ngOnInit(): void {
     this.identityClaims = this.oAuthService.getIdentityClaims();
+
+    console.log(this.oAuthService.hasValidIdToken());
+    console.log(this.oAuthService.hasValidAccessToken());
+    if (this.oAuthService.hasValidIdToken() || this.oAuthService.hasValidAccessToken()) {
+      this.isLoggedIn = true;
+    }
     // this.oAuthService.loadUserProfile().then((userInfo) => {
     //   console.log(userInfo);
     //   this.userInfo = userInfo;

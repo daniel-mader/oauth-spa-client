@@ -1,10 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,19 +13,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
+import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
 import { PasswordFlowComponent } from './flows/password-flow/password-flow.component';
 import { JwtVisualizerComponent } from './jwt-visualizer/jwt-visualizer.component';
 import { LoginComponent } from './login/login.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
+import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
+import { metaReducers, reducers } from './+state/reducers';
+import { SideNavComponent } from './navigation/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +41,8 @@ import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.compo
     NavBarComponent,
     PasswordFlowComponent,
     AuthCodePkceFlowComponent,
-    ImplicitFlowComponent
+    ImplicitFlowComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +62,14 @@ import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.compo
     MatSelectModule,
     HttpClientModule,
     OAuthModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    MatSidenavModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

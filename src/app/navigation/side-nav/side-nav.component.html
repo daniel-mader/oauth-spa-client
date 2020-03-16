@@ -1,0 +1,28 @@
+<h1>Settings</h1>
+
+<mat-form-field appearance="outline" class="fill-space-horizontal">
+  <mat-label>Identity provider</mat-label>
+  <input matInput id="issuerField" placeholder="" [formControl]="issuerField">
+</mat-form-field>
+
+<mat-divider></mat-divider>
+
+<mat-slide-toggle class="padding-item" [checked]="isDarkTheme" (change)="toggleDarkTheme($event.checked)">Dark theme
+</mat-slide-toggle>
+
+<mat-divider></mat-divider>
+
+<mat-slide-toggle class="padding-item" disabled>Omit signatures</mat-slide-toggle>
+
+<mat-divider></mat-divider>
+
+<div class="padding-item" fxLayout="column">
+  <h4><b>Display flows</b></h4>
+  <mat-checkbox color="primary" name="authcodepkce" [(ngModel)]="flows.authcodepkce.active"
+                (change)="toggleFlow($event.source.name, $event.checked)">{{ flows.authcodepkce.viewAs }}</mat-checkbox>
+  <mat-checkbox color="primary" name="implicit" [(ngModel)]="flows.implicit.active"
+                (change)="toggleFlow($event.source.name, $event.checked)">{{ flows.implicit.viewAs }}</mat-checkbox>
+  <mat-checkbox color="primary" name="password" class="example-margin" [(ngModel)]="flows.password.active"
+                (change)="toggleFlow($event.source.name, $event.checked)">{{ flows.password.viewAs }}</mat-checkbox>
+</div>
+<!--      <mat-slide-toggle disabled>Save credentials</mat-slide-toggle>-->
