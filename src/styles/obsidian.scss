@@ -2,17 +2,14 @@
 
 @include mat-core();
 
+// light theme
 $primary: mat-palette($mat-light-blue, 800);
-//$accent: mat-palette($mat-orange, A200, A100, A400);
 $accent: mat-palette($mat-pink, A400);
 $warn: mat-palette($mat-red);
 $theme: mat-light-theme($primary, $accent, $warn);
-
 @include angular-material-theme($theme);
 
-
-
-// dark
+// dark theme
 $dark-primary: mat-palette($mat-blue-grey);
 $dark-accent: mat-palette($mat-orange, A200, A100, A400);
 $dark-warn: mat-palette($mat-red);
@@ -20,6 +17,14 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .obsidian-dark {
   @include angular-material-theme($dark-theme);
+}
+
+.color-accent-light {
+  color: mat-color($accent);
+}
+
+.color-accent-dark {
+  color: mat-color($dark-accent);
 }
 
 /*

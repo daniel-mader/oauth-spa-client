@@ -16,7 +16,7 @@ export class AuthCodePkceFlowComponent implements OnInit {
 
   issuer$: Observable<string> = this.store.pipe(select(selectDefaultIssuer));
 
-  constructor(private oAuthService: OAuthService, private store: Store) {
+  constructor(private oauthService: OAuthService, private store: Store) {
   }
 
   ngOnInit(): void {
@@ -24,33 +24,35 @@ export class AuthCodePkceFlowComponent implements OnInit {
       console.log(issuer);
       // authCodePkceFlowConfig.issuer = issuer;
       console.log('onInit(): Configuring Auth Code Flow (with PKCE) ...');
-      this.oAuthService.configure(authCodePkceFlowConfig);
-      this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(
-        () => { console.log('success');},
+      this.oauthService.configure(authCodePkceFlowConfig);
+      console.log('Configuring done.');
+      console.log('Loading discovery document and try log in ...');
+      this.oauthService.loadDiscoveryDocumentAndTryLogin().then(
+        () => { console.log('successfully tried login');},
         (e) => {
           console.log('error', e);
           this.store.dispatch(showError({message: e.params.error}));
         }
       );
-      // this.oAuthService.initCodeFlow();
+      // this.oauthService.initCodeFlow();
     });
   }
 
   initAuthCodeFlow(): void {
     console.log('initAuthCodeFlow(): Configuring Auth Code Flow with PKCE ...');
-    this.oAuthService.configure(authCodePkceFlowConfig);
+    this.oauthService.configure(authCodePkceFlowConfig);
     console.log('Loading Discovery Document ...');
     console.log(authCodePkceFlowConfig);
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(
+    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(
       () => {
-        this.oAuthService.tryLogin().then(
+        this.oauthService.tryLogin().then(
           () => {
           console.log('REACHED!');
           },
           (e) => console.error('error', e)
         );
         console.log('Init Code Flow ...');
-        this.oAuthService.initCodeFlow();
+        this.oauthService.initCodeFlow();
       },
       (e) => console.error('error', e)
     );
@@ -59,7 +61,7 @@ export class AuthCodePkceFlowComponent implements OnInit {
   onClickAuthCodeFlow(): void {
     // this.initAuthCodeFlow();
     console.log('Init Code Flow ...');
-    this.oAuthService.initCodeFlow();
+    this.oauthService.initCodeFlow();
   }
 
 }

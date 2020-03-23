@@ -19,7 +19,8 @@
 </mat-card>
 
 <mat-card>
-  userInfo: {{ userInfo }}
+  <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>/userinfo</b></h3>
+  <pre>{{ userInfo | json }}</pre>
 </mat-card>
 
 <!-- TODO: Alternative: mat-card -->

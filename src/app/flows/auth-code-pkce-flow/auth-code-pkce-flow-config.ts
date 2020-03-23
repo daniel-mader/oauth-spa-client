@@ -29,6 +29,7 @@ export const authCodePkceFlowConfig: AuthConfig = {
 
   showDebugInformation: true,
 
+  logoutUrl: 'https://localhost:4200/logout'
   // Not recommented:
   // disablePKCI: true,
 };
