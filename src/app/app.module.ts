@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
@@ -65,6 +66,7 @@ import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
     MatSlideToggleModule,
     MatSelectModule,
     HttpClientModule,
+    // HttpClientXsrfModule.disable(),
     OAuthModule.forRoot(),
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, {
@@ -74,7 +76,8 @@ import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
     EffectsModule.forRoot([AppEffects]),
     MatSidenavModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,31 @@
+.margin-10 {
+  margin: 10px;
+}
+
+.margin-right-8 {
+  margin-right: 8px;
+}
+
+.logout-card-outer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.token-status {
+  display: flex;
+  align-items: center;
+}
+
+.icon-align {
+  display: flex;
+  padding-left: 2px;
+}
+
+.icon-align div {
+  display: flex;
+}
+
+.check-color {
+  color: #00c853;
+}

@@ -18,11 +18,11 @@
 
 <div class="padding-item" fxLayout="column">
   <h4><b>Display flows</b></h4>
-  <mat-checkbox color="primary" name="authcodepkce" [(ngModel)]="flows.authcodepkce.active"
+  <mat-checkbox name="authcodepkce" [(ngModel)]="flows.authcodepkce.active"
                 (change)="toggleFlow($event.source.name, $event.checked)">{{ flows.authcodepkce.viewAs }}</mat-checkbox>
-  <mat-checkbox color="primary" name="implicit" [(ngModel)]="flows.implicit.active"
+  <mat-checkbox color="accent" name="implicit" [(ngModel)]="flows.implicit.active"
                 (change)="toggleFlow($event.source.name, $event.checked)">{{ flows.implicit.viewAs }}</mat-checkbox>
-  <mat-checkbox color="primary" name="password" class="example-margin" [(ngModel)]="flows.password.active"
+  <mat-checkbox color="accent" name="password" class="example-margin" [(ngModel)]="flows.password.active"
                 (change)="toggleFlow($event.source.name, $event.checked)">{{ flows.password.viewAs }}</mat-checkbox>
 </div>
 <!--      <mat-slide-toggle disabled>Save credentials</mat-slide-toggle>-->

@@ -1,6 +1,6 @@
 {
   "darkMode": false,
-  "defaultIssuer": "https://demo.identityserver.io",
+  "defaultIssuer": "https://dev-308298.okta.com",
   "showFlows": {
     "authCodePkce": true,
     "implicit": false,

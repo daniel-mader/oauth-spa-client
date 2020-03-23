@@ -10,19 +10,19 @@ export class JwtVisualizerComponent implements OnInit {
 
   identityClaims: object;
   pkciVerifier: string;
-  hasValidIdToken: boolean;
-  hasValidAccessToken: boolean;
+
   userInfo: object;
 
   constructor(private oAuthService: OAuthService) { }
 
   ngOnInit(): void {
-    this.hasValidIdToken = this.oAuthService.hasValidIdToken();
-    this.hasValidAccessToken = this.oAuthService.hasValidAccessToken();
+
     this.identityClaims = this.oAuthService.getIdentityClaims();
-    this.oAuthService.loadUserProfile().then(
-      (userInfo) => this.userInfo = userInfo,
-      () => console.log('error loading user profile'));
+    if (this.oAuthService.hasValidAccessToken()) {
+      this.oAuthService.loadUserProfile().then(
+        (userInfo) => this.userInfo = userInfo,
+        () => console.log('error loading user profile'));
+    }
     this.pkciVerifier = sessionStorage.getItem('PKCI_verifier');
   }
 

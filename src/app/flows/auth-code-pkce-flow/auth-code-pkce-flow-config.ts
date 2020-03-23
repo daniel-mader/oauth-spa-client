@@ -10,6 +10,7 @@ export const authCodePkceFlowConfig: AuthConfig = {
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
   clientId: 'spa',
+  // clientId: '0oa3bhtdm4NptlAc8357', // TODO: is for okta.com
 
   // Just needed if your auth server demands a secret. In general, this
   // is a sign that the auth server is not configured with SPAs in mind
@@ -23,7 +24,8 @@ export const authCodePkceFlowConfig: AuthConfig = {
   // The first four are defined by OIDC.
   // Important: Request offline_access to get a refresh token
   // The api scope is a usecase specific one
-  scope: 'openid profile email offline_access api',
+  // scope: 'openid profile email offline_access api',
+  scope: 'openid profile email',
 
   showDebugInformation: true,
 

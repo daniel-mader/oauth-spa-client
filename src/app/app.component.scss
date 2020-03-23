@@ -13,6 +13,10 @@
   height: calc(100% - 100px);
 }
 
+.column-height {
+  min-height: 80vh;
+}
+
 mat-sidenav {
   min-width: 350px;
   padding: 15px;
@@ -25,4 +29,8 @@ mat-drawer-container {
 main {
   height: 100%;
   overflow-y: auto;
+}
+
+.login-width {
+  min-width: 25%;
 }

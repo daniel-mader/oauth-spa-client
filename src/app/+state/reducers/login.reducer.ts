@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { logoutSuccess } from '../actions';
+import { loginSuccess, logoutSuccess } from '../actions';
 
 export interface State {
   isLoggedIn: boolean;
@@ -11,6 +11,7 @@ const initialState: State = {
 
 const loginReducer = createReducer(
   initialState,
+  on(loginSuccess, (state) => ({...state, isLoggedIn: true})),
   on(logoutSuccess, (state) => ({...state, isLoggedIn: false}))
 );
 

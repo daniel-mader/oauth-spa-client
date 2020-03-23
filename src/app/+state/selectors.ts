@@ -5,3 +5,5 @@ export const selectDarkMode = (state: State) => state.preferences.isDarkMode;
 export const selectDefaultIssuer = (state: State) => state.preferences.issuer;
 export const selectSettingsDrawerOpen = (state: State) => state.preferences.settingsDrawerOpen;
 export const selectDisplayedFlows = (state: State) => state.preferences.displayedFlows;
+
+export const selectIsLoggedIn = (state: State) => state.login.isLoggedIn;
