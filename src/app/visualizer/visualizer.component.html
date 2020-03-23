@@ -1,0 +1,45 @@
+<app-logout class="position-logout"></app-logout>
+
+<!--<h3 class="mat-subheading-2">Flow Visualizer</h3>-->
+<!-- TODO: rename jwt-visualizer -> flow-visualizer -->
+
+<!--<div class="flat-card">-->
+<!--  <pre>{{ exampleJwt | json }}</pre>-->
+<!--</div>-->
+<mat-card class="mat-elevation-z4 margin-top">
+  <div class="padding-bottom flex">
+    <app-loading [hasCompleted]="true"></app-loading>
+    <div>Configure client</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="padding-top padding-bottom flex">
+    <app-loading [hasCompleted]="true"></app-loading>
+    Perform login
+  </div>
+  <mat-divider></mat-divider>
+  <div class="padding-top padding-bottom flex">
+    <app-loading [hasCompleted]="true"></app-loading>
+    Fetch tokens
+  </div>
+  <mat-divider></mat-divider>
+  <div class="padding-top flex">
+    <app-loading [hasCompleted]="true"></app-loading>
+    Get user details
+  </div>
+</mat-card>
+
+<mat-card class="mat-elevation-z4 margin-top">
+  <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>/userinfo</b></h3>
+  <pre>{{ userInfo | json }}</pre>
+</mat-card>
+
+<!-- TODO: Alternative: mat-card -->
+<mat-card class="fill-height mat-elevation-z4 margin-top">
+  <!--  <pre>{{ exampleJwt | json }}</pre>-->
+  <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>id_token (claims)</b></h3>
+  <pre style="overflow: hidden; text-overflow: ellipsis;">{{ identityClaims | json }}</pre>
+</mat-card>
+
+<mat-card class="mat-elevation-z4 margin-top">
+  PKCI Verifier: {{ pkciVerifier }}
+</mat-card>

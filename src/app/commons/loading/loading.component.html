@@ -1,0 +1,9 @@
+<div *ngIf="hasCompleted; else loading" class="padding-right spinner-margin">
+  <mat-icon class="check-color">check_circle_outline</mat-icon>
+</div>
+
+<ng-template #loading>
+  <div class="padding-right">
+    <mat-progress-spinner class="progress-spinner" [color]="color" [mode]="mode" diameter="20"></mat-progress-spinner>
+  </div>
+</ng-template>

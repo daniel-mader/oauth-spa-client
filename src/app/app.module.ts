@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -29,6 +30,7 @@ import { AppEffects } from './+state/app.effects';
 import { metaReducers, reducers } from './+state/reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoadingComponent } from './commons/loading/loading.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
 import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
@@ -37,20 +39,21 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 import { SideNavComponent } from './navigation/side-nav/side-nav.component';
-import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
+import { VisualizerComponent } from './visualizer/visualizer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    JwtVisualizerComponent,
+    VisualizerComponent,
     NavBarComponent,
     PasswordFlowComponent,
     AuthCodePkceFlowComponent,
     ImplicitFlowComponent,
     SideNavComponent,
     LogoutComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,8 @@ import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
     MatSidenavModule,
     MatCheckboxModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [MatSnackBar],
   bootstrap: [AppComponent]

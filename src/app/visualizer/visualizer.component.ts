@@ -9,10 +9,10 @@ import { UserProfileService } from '../services/user-profile.service';
 
 @Component({
   selector: 'app-jwt-visualizer',
-  templateUrl: './jwt-visualizer.component.html',
-  styleUrls: ['./jwt-visualizer.component.scss']
+  templateUrl: './visualizer.component.html',
+  styleUrls: ['./visualizer.component.scss']
 })
-export class JwtVisualizerComponent implements OnInit {
+export class VisualizerComponent implements OnInit {
 
   identityClaims: object;
   pkciVerifier: string;

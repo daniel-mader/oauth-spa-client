@@ -1,5 +1,5 @@
 <ng-container *ngIf="displayedFlows$ | async as displayedFlows">
-  <app-password-flow *ngIf="displayedFlows.password"></app-password-flow>
   <app-auth-code-pkce-flow *ngIf="displayedFlows.authcodepkce"></app-auth-code-pkce-flow>
   <app-implicit-flow *ngIf="displayedFlows.implicit"></app-implicit-flow>
+  <app-password-flow *ngIf="displayedFlows.password"></app-password-flow>
 </ng-container>

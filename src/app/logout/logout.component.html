@@ -1,4 +1,4 @@
-<mat-card style="width: 350px;">
+<mat-card style="width: 350px;" class="mat-elevation-z2">
   <!--  Logged in as: {{ userInfo?.sub }}-->
 
   <!--  id claims (payload of id_token): <pre>{{ identityClaims | json }}</pre>-->
@@ -18,7 +18,7 @@
       </ng-template>
     </div>
     <div>
-      <button mat-mini-fab color="warn" class="margin-right-8" (click)="onClickClearStorage()">
+      <button mat-mini-fab color="warn" class="margin-right-8" (click)="onClickClearStorage()" matTooltip="">
         <mat-icon>delete</mat-icon>
       </button>
       <button mat-mini-fab color="warn" [disabled]="!(isLoggedIn$ | async)" (click)="onClickLogout()">
