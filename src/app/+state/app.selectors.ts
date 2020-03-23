@@ -7,3 +7,5 @@ export const selectSettingsDrawerOpen = (state: State) => state.preferences.sett
 export const selectDisplayedFlows = (state: State) => state.preferences.displayedFlows;
 
 export const selectIsLoggedIn = (state: State) => state.login.isLoggedIn;
+
+export const selectError = (state: State) => state.error.message;

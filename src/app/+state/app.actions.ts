@@ -12,3 +12,5 @@ export const updateDisplayedFlows = createAction(
   '[Settings] Update Displayed Flows',
   props<{ authcodepkce: boolean, implicit: boolean, password: boolean }>()
 );
+
+export const showError = createAction('[Error] Display Error', props<{ message: string }>());

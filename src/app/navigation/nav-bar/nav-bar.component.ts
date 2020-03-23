@@ -4,8 +4,8 @@ import { FormControl } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { setDarkMode, setIssuer, toggleSettingsDrawer } from '../../+state/actions';
-import { selectDarkMode, selectDefaultIssuer, selectSettingsDrawerOpen } from '../../+state/selectors';
+import { setDarkMode, setIssuer, toggleSettingsDrawer } from '../../+state/app.actions';
+import { selectDarkMode, selectDefaultIssuer, selectSettingsDrawerOpen } from '../../+state/app.selectors';
 
 @Component({
   selector: 'app-nav-bar',

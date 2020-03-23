@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { loginSuccess, logoutSuccess } from '../actions';
+import { loginSuccess, logoutSuccess } from '../app.actions';
 
 export interface State {
   isLoggedIn: boolean;

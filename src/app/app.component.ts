@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { toggleSettingsDrawer } from './+state/actions';
-import { selectDarkMode, selectSettingsDrawerOpen } from './+state/selectors';
+import { toggleSettingsDrawer } from './+state/app.actions';
+import { selectDarkMode, selectSettingsDrawerOpen } from './+state/app.selectors';
 import { PreferencesService } from './services/preferences.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.preferencesService.loadFileToStore();
+    this.preferencesService.loadPreferencesFileToStore();
     this.store.pipe(select(selectSettingsDrawerOpen)).subscribe((opened) => {
       this.opened = opened;
     });

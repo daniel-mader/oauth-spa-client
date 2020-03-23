@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectDisplayedFlows } from '../+state/selectors';
+import { selectDisplayedFlows } from '../+state/app.selectors';
 
 @Component({
   selector: 'app-login',

@@ -1,4 +1,4 @@
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,6 +29,7 @@ import { AppEffects } from './+state/app.effects';
 import { metaReducers, reducers } from './+state/reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
 import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
 import { PasswordFlowComponent } from './flows/password-flow/password-flow.component';
@@ -47,7 +49,8 @@ import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
     AuthCodePkceFlowComponent,
     ImplicitFlowComponent,
     SideNavComponent,
-    LogoutComponent
+    LogoutComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,6 @@ import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
     MatSlideToggleModule,
     MatSelectModule,
     HttpClientModule,
-    // HttpClientXsrfModule.disable(),
     OAuthModule.forRoot(),
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, {
@@ -79,7 +81,7 @@ import { JwtVisualizerComponent } from './visualizer/jwt-visualizer.component';
     FormsModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

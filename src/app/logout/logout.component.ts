@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { loginSuccess, logout } from '../+state/actions';
-import { selectIsLoggedIn } from '../+state/selectors';
+import { loginSuccess, logout } from '../+state/app.actions';
+import { selectIsLoggedIn } from '../+state/app.selectors';
 
 @Component({
   selector: 'app-logout',

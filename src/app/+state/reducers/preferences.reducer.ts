@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as Actions from '../actions';
+import * as Actions from '../app.actions';
 
 export interface State {
   isDarkMode: boolean;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/actions';
+import { setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/app.actions';
 import preferences from '../../assets/preferences.json';
 
 @Injectable({
@@ -8,10 +8,11 @@ import preferences from '../../assets/preferences.json';
 })
 export class PreferencesService {
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+  }
 
   /* loads preferences.json file and dispatches actions to set values to store */
-  loadFileToStore() {
+  loadPreferencesFileToStore() {
     this.store.dispatch(setDarkMode({isDarkMode: preferences.darkMode}));
     this.store.dispatch(setIssuer({issuer: preferences.defaultIssuer}));
     this.store.dispatch(updateDisplayedFlows({
@@ -20,6 +21,9 @@ export class PreferencesService {
       password: preferences.showFlows.passwordCredential
     }));
     console.log('Preferences loaded successfully from json file.');
+  }
+
+  saveStoreToPreferencesFile() {
   }
 
 }

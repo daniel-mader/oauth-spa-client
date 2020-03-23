@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { setDarkMode, setIssuer, updateDisplayedFlows } from '../../+state/actions';
-import { selectDarkMode, selectDefaultIssuer, selectDisplayedFlows } from '../../+state/selectors';
+import { setDarkMode, setIssuer, updateDisplayedFlows } from '../../+state/app.actions';
+import { selectDarkMode, selectDefaultIssuer, selectDisplayedFlows } from '../../+state/app.selectors';
 
 @Component({
   selector: 'app-side-nav',

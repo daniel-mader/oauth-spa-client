@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { selectDefaultIssuer } from '../../+state/selectors';
+import { selectDefaultIssuer } from '../../+state/app.selectors';
 import { PreferencesService } from '../../services/preferences.service';
 import { passwordFlowConfig } from './password-flow-config';
 

@@ -5,9 +5,12 @@
   <!--  accessToken: {{ accessToken }}-->
   <div class="logout-card-outer">
     <div>
-      <ng-container *ngIf="isLoggedIn$ | async">
+      <ng-container *ngIf="isLoggedIn$ | async; else loggedOut">
         valid until: <b>{{ identityClaims?.exp * 1000 | date:'dd. MMM yyyy, HH:mm:ss' }}</b>
       </ng-container>
+      <ng-template #loggedOut>
+        <div style="color: #888888"><b>Logged out</b></div>
+      </ng-template>
     </div>
     <div>
       <button mat-mini-fab color="warn" class="margin-right-8" (click)="onClickClearStorage()">

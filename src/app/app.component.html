@@ -10,7 +10,7 @@
 
       <mat-sidenav-content>
         <div fxLayout="row" fxLayoutAlign="space-around center">
-          <app-login fxLayout="column" fxLayoutAlign="space-between" class="column-height login-width"></app-login>
+          <app-login fxLayout="column" fxLayoutAlign="space-around" class="column-height login-width"></app-login>
 
           <!--    <div class="vertical-divider"></div>-->
           <mat-icon style="color: #888888">double_arrow</mat-icon>
@@ -19,6 +19,8 @@
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
+
+    <app-error-message></app-error-message>
 
     <hr><pre>router-outlet:</pre><router-outlet></router-outlet>
 
