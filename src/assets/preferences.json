@@ -3,7 +3,7 @@
   "defaultIssuer": "https://demo.identityserver.io",
   "showFlows": {
     "authCodePkce": true,
-    "implicit": true,
-    "passwordCredential": true
+    "implicit": false,
+    "passwordCredential": false
   }
 }

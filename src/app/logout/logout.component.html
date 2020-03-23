@@ -1,0 +1,9 @@
+<mat-card style="width: 350px;">
+  <!--  Logged in as: {{ userInfo?.sub }}-->
+  valid until: <b>{{ identityClaims['exp'] * 1000 | date:'dd. MMM yyyy, HH:mm:ss' }}</b>
+  id claims (payload of id_token): <pre>{{ identityClaims | json }}</pre>
+  accessToken: {{ accessToken }}
+</mat-card>
+
+<button mat-flat-button type="button" color="warn" [disabled]="!isLoggedIn" (click)="onClickDestroySession()">Logout
+</button>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
-import { logout } from '../+state/actions';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectDisplayedFlows } from '../+state/selectors';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +10,12 @@ import { logout } from '../+state/actions';
 })
 export class LoginComponent implements OnInit {
 
-  userInfo: UserInfo;
-  identityClaims: object;
-  isLoggedIn: boolean;
+  displayedFlows$: Observable<any> = this.store.pipe(select(selectDisplayedFlows));
 
-  constructor(private oAuthService: OAuthService, private store: Store) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
-    this.identityClaims = this.oAuthService.getIdentityClaims();
-
-    console.log(this.oAuthService.hasValidIdToken());
-    console.log(this.oAuthService.hasValidAccessToken());
-    if (this.oAuthService.hasValidIdToken() || this.oAuthService.hasValidAccessToken()) {
-      this.isLoggedIn = true;
-    }
-    // this.oAuthService.loadUserProfile().then((userInfo) => {
-    //   console.log(userInfo);
-    //   this.userInfo = userInfo;
-    // });
-  }
-
-  onClickDestroySession(): void {
-    this.store.dispatch(logout());
-    this.oAuthService.logOut();
   }
 
 }

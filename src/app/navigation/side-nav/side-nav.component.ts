@@ -68,7 +68,7 @@ export class SideNavComponent implements OnInit {
         implicit: checked,
         password: this.flows.password.active
       }));
-    } else if (flow === 'passwors') {
+    } else if (flow === 'password') {
       this.store.dispatch(updateDisplayedFlows({
         authcodepkce: this.flows.authcodepkce.active,
         implicit: this.flows.implicit.active,

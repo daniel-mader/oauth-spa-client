@@ -1,10 +1,7 @@
-<app-password-flow></app-password-flow>
-<app-auth-code-pkce-flow></app-auth-code-pkce-flow>
-<app-implicit-flow></app-implicit-flow>
+<ng-container *ngIf="displayedFlows$ | async as displayedFlows">
+  <app-password-flow *ngIf="displayedFlows.password"></app-password-flow>
+  <app-auth-code-pkce-flow *ngIf="displayedFlows.authcodepkce"></app-auth-code-pkce-flow>
+  <app-implicit-flow *ngIf="displayedFlows.implicit"></app-implicit-flow>
+</ng-container>
 
-<mat-card>
-  Logged in as: {{ userInfo?.sub }}
-<!--  id claims (payload of id_token): <pre>{{ identityClaims | json }}</pre>-->
-</mat-card>
-
-<button mat-flat-button type="button" color="warn" [disabled]="!isLoggedIn" (click)="onClickDestroySession()">Logout</button>
+<app-logout></app-logout>
