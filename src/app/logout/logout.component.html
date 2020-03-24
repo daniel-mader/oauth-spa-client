@@ -18,7 +18,8 @@
       </ng-template>
     </div>
     <div>
-      <button mat-mini-fab color="warn" class="margin-right-8" (click)="onClickClearStorage()" matTooltip="">
+      <button mat-mini-fab color="warn" class="margin-right-8" (click)="onClickClearStorage()"
+              matTooltip="Clear session storage from browser.">
         <mat-icon>delete</mat-icon>
       </button>
       <button mat-mini-fab color="warn" [disabled]="!(isLoggedIn$ | async)" (click)="onClickLogout()">
@@ -32,7 +33,7 @@
 
     <div style="display: flex; flex-direction: row; justify-content: space-between; padding-top: 16px;">
 
-      <div class="token-status" matTooltip="{{ accessToken?.expires | date:'dd. MMM yyyy, HH:mm:ss' }}">
+      <div class="token-status" matTooltip="expires: {{ accessToken?.expires | date:'dd. MMM yyyy, HH:mm:ss' }}">
         <span>access_token</span>
         <div class="icon-align">
           <div *ngIf="accessToken?.hasValid; else noValidAccessToken">
@@ -44,7 +45,7 @@
         </div>
       </div>
 
-      <div class="token-status" matTooltip="{{ idToken?.expires | date:'dd. MMM yyyy, HH:mm:ss' }}">
+      <div class="token-status" matTooltip="expires: {{ idToken?.expires | date:'dd. MMM yyyy, HH:mm:ss' }}">
         <span>id_token</span>
         <div class="icon-align">
           <div *ngIf="idToken?.hasValid; else noValidIdToken">
@@ -59,7 +60,7 @@
       <div class="token-status" matTooltip="not implemented yet">
         <span>opaque_token</span>
         <div class="icon-align">
-        <mat-icon>error_outline</mat-icon>
+          <mat-icon>error_outline</mat-icon>
         </div>
       </div>
 

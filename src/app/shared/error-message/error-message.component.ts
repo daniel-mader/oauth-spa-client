@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectError } from '../+state/app.selectors';
+import { selectError } from '../../+state/app.selectors';
 
 @Component({
   selector: 'app-error-message',

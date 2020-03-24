@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/app.actions';
+import { selectDefaultIssuer } from '../+state/app.selectors';
 import preferences from '../../assets/preferences.json';
 
 @Injectable({
@@ -14,7 +15,7 @@ export class PreferencesService {
   /* loads preferences.json file and dispatches actions to set values to store */
   loadPreferencesFileToStore() {
     this.store.dispatch(setDarkMode({isDarkMode: preferences.darkMode}));
-    this.store.dispatch(setIssuer({issuer: preferences.defaultIssuer}));
+    this.store.dispatch(setIssuer({issuer: preferences.openIdConfig.issuer}));
     this.store.dispatch(updateDisplayedFlows({
       authcodepkce: preferences.showFlows.authCodePkce,
       implicit: preferences.showFlows.implicit,
@@ -24,6 +25,10 @@ export class PreferencesService {
   }
 
   saveStoreToPreferencesFile() {
+    this.store.pipe(select(selectDefaultIssuer)).subscribe((issuer) => {
+      // console.log('Saving to local file:', issuer);
+      // preferences.openIdConfig.defaultIssuer = issuer;
+    });
   }
 
 }

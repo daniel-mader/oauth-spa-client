@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { selectDisplayedFlows } from '../+state/app.selectors';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-flows-list',
+  templateUrl: './flows-list.component.html',
+  styleUrls: ['./flows-list.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class FlowsListComponent implements OnInit {
 
   displayedFlows$: Observable<any> = this.store.pipe(select(selectDisplayedFlows));
 

@@ -5,17 +5,17 @@
 
     <mat-sidenav-container [hasBackdrop]="true">
       <mat-sidenav mode="over" [(opened)]="opened" position="end" (closedStart)="onCloseSideNav()">
-        <app-side-nav></app-side-nav>
+        <app-settings></app-settings>
       </mat-sidenav>
 
       <mat-sidenav-content>
         <div fxLayout="row" fxLayoutAlign="space-around center">
-          <app-login fxLayout="column" fxLayoutAlign="space-around" class="column-height login-width"></app-login>
+          <app-flows-list fxLayout="column" fxLayoutAlign="space-around" class="column-height login-width"></app-flows-list>
 
           <!--    <div class="vertical-divider"></div>-->
           <mat-icon style="color: #888888">double_arrow</mat-icon>
 
-          <app-jwt-visualizer class="fill-space-horizontal column-height" fxLayout="column"></app-jwt-visualizer>
+          <app-visualizer class="fill-space-horizontal column-height" fxLayout="column"></app-visualizer>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

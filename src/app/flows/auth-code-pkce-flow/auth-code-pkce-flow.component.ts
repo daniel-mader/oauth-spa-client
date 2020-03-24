@@ -21,7 +21,6 @@ export class AuthCodePkceFlowComponent implements OnInit {
 
   ngOnInit(): void {
     this.issuer$.subscribe((issuer) => {
-      console.log(issuer);
       // authCodePkceFlowConfig.issuer = issuer;
       console.log('onInit(): Configuring Auth Code Flow (with PKCE) ...');
       this.oauthService.configure(authCodePkceFlowConfig);

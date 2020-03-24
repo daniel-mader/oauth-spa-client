@@ -30,27 +30,27 @@ import { AppEffects } from './+state/app.effects';
 import { metaReducers, reducers } from './+state/reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingComponent } from './commons/loading/loading.component';
-import { ErrorMessageComponent } from './error-message/error-message.component';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { ErrorMessageComponent } from './shared/error-message/error-message.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
 import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
 import { PasswordFlowComponent } from './flows/password-flow/password-flow.component';
-import { LoginComponent } from './login/login.component';
+import { FlowsListComponent } from './flows-list/flows-list.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
-import { SideNavComponent } from './navigation/side-nav/side-nav.component';
+import { SettingsComponent } from './navigation/settings/settings.component';
 import { VisualizerComponent } from './visualizer/visualizer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    FlowsListComponent,
     VisualizerComponent,
     NavBarComponent,
     PasswordFlowComponent,
     AuthCodePkceFlowComponent,
     ImplicitFlowComponent,
-    SideNavComponent,
+    SettingsComponent,
     LogoutComponent,
     ErrorMessageComponent,
     LoadingComponent

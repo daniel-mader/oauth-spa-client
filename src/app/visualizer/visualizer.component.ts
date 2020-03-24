@@ -8,7 +8,7 @@ import { authCodePkceFlowConfig } from '../flows/auth-code-pkce-flow/auth-code-p
 import { UserProfileService } from '../services/user-profile.service';
 
 @Component({
-  selector: 'app-jwt-visualizer',
+  selector: 'app-visualizer',
   templateUrl: './visualizer.component.html',
   styleUrls: ['./visualizer.component.scss']
 })

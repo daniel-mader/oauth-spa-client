@@ -7,11 +7,11 @@ import { setDarkMode, setIssuer, updateDisplayedFlows } from '../../+state/app.a
 import { selectDarkMode, selectDefaultIssuer, selectDisplayedFlows } from '../../+state/app.selectors';
 
 @Component({
-  selector: 'app-side-nav',
-  templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss']
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
-export class SideNavComponent implements OnInit {
+export class SettingsComponent implements OnInit {
 
   isDarkTheme$: Observable<boolean> = this.store.pipe(select(selectDarkMode));
   isDarkTheme: boolean;

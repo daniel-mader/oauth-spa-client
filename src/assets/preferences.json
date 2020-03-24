@@ -1,9 +1,12 @@
 {
-  "darkMode": false,
-  "defaultIssuer": "https://dev-308298.okta.com",
+  "openIdConfig": {
+    "issuer": "https://dev-308298.okta.com",
+    "clientId": "0oa3bhtdm4NptlAc8357"
+  },
   "showFlows": {
     "authCodePkce": true,
     "implicit": false,
     "passwordCredential": false
-  }
+  },
+  "darkMode": false
 }
