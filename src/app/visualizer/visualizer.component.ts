@@ -15,7 +15,6 @@ import { UserProfileService } from '../services/user-profile.service';
 export class VisualizerComponent implements OnInit {
 
   identityClaims: object;
-  pkciVerifier: string;
   isDarkTheme$: Observable<boolean> = this.store.pipe(select(selectDarkMode));
 
   userInfo: object;
@@ -52,7 +51,6 @@ export class VisualizerComponent implements OnInit {
       //     this.store.dispatch(showError({message: e}));
       //   });
     }
-    this.pkciVerifier = sessionStorage.getItem('PKCI_verifier');
   }
 
 }

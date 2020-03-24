@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -30,15 +31,15 @@ import { AppEffects } from './+state/app.effects';
 import { metaReducers, reducers } from './+state/reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingComponent } from './shared/loading/loading.component';
-import { ErrorMessageComponent } from './shared/error-message/error-message.component';
+import { FlowsListComponent } from './flows-list/flows-list.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
 import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
 import { PasswordFlowComponent } from './flows/password-flow/password-flow.component';
-import { FlowsListComponent } from './flows-list/flows-list.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 import { SettingsComponent } from './navigation/settings/settings.component';
+import { ErrorMessageComponent } from './shared/error-message/error-message.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 import { VisualizerComponent } from './visualizer/visualizer.component';
 
 @NgModule({
@@ -83,7 +84,8 @@ import { VisualizerComponent } from './visualizer/visualizer.component';
     MatCheckboxModule,
     FormsModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatExpansionModule
   ],
   providers: [MatSnackBar],
   bootstrap: [AppComponent]

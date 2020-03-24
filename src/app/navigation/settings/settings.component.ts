@@ -48,6 +48,8 @@ export class SettingsComponent implements OnInit {
       this.flows.implicit.active = isDisplayed.implicit;
       this.flows.password.active = isDisplayed.password;
     });
+
+    this.issuerField.disable(); // TODO: temporarily disable until value can be written to file
   }
 
   toggleDarkTheme(checked: boolean) {

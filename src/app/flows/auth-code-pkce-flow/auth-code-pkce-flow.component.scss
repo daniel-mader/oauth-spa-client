@@ -8,6 +8,15 @@
   width: 50%;
 }
 
-.green {
-  color: #00c853;
+.ribbon {
+  background-color: #00C853;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 2px 5px;
+  font-size: 0.7em;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
