@@ -1,5 +1,7 @@
 @import '~@angular/material/theming';
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
 @include mat-core();
 
 // light theme
@@ -10,12 +12,13 @@ $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
 // dark theme
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent: mat-palette($mat-orange, A200, A100, A400);
+$dark-primary: mat-palette($mat-grey, 900);
+$dark-accent: mat-palette($mat-orange, A400);
 $dark-warn: mat-palette($mat-red);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .obsidian-dark {
+  //color: #EFBE25; //TODO: needed?
   @include angular-material-theme($dark-theme);
 }
 
@@ -26,6 +29,10 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .color-accent-dark {
   color: mat-color($dark-accent);
 }
+
+/* Custom font */
+$obsidian-typography: mat-typography-config($font-family: '"Inter", sans-serif;');
+@include mat-core($obsidian-typography);
 
 /*
 // Our dark theme

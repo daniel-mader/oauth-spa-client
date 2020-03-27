@@ -28,6 +28,7 @@ export class LogoutComponent implements OnInit {
   userInfo: UserInfo;
   identityClaims: any;
   isLoggedIn$: Observable<boolean> = this.store.pipe(select(selectIsLoggedIn));
+  isSessionStorageEmpty: boolean;
 
   constructor(private oAuthService: OAuthService, private store: Store, private userProfileService: UserProfileService) {
   }
@@ -73,6 +74,8 @@ export class LogoutComponent implements OnInit {
       //   console.log('error loading user profile');
       // });
     }
+
+    this.isSessionStorageEmpty = sessionStorage.length === 0;
   }
 
   onClickLogout(): void {
@@ -82,6 +85,7 @@ export class LogoutComponent implements OnInit {
 
   onClickClearStorage(): void {
     window.sessionStorage.clear();
+    this.isSessionStorageEmpty = true;
   }
 
 }

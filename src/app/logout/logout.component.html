@@ -1,4 +1,4 @@
-<mat-card style="width: 350px;" class="mat-elevation-z2">
+<mat-card class="mat-elevation-z2 component-width">
   <!--  Logged in as: {{ userInfo?.sub }}-->
 
   <!--  id claims (payload of id_token): <pre>{{ identityClaims | json }}</pre>-->
@@ -10,18 +10,18 @@
 <!--          valid until: <b>{{ identityClaims?.exp * 1000 | date:'dd. MMM yyyy, HH:mm:ss' }}</b>-->
 <!--        </div>-->
 <!--      </ng-container>-->
-      <div *ngIf="isLoggedIn$ | async" class="token-status">
+      <div *ngIf="isLoggedIn$ | async; else loggedOut" class="token-status">
 <!--        /userinfo:-->
         <mat-icon class="margin-right-8">account_circle</mat-icon><b>{{ userInfo?.name }}</b>
       </div>
       <ng-template #loggedOut>
-        <div style="color: #888888"><b>Logged out</b></div>
+        <div style="color: #888888"><b>No user logged in.</b></div>
       </ng-template>
     </div>
     <div>
-      <button mat-mini-fab color="warn" class="margin-right-8" (click)="onClickClearStorage()"
-              matTooltip="Clear session storage from browser.">
-        <mat-icon>delete</mat-icon>
+      <button mat-stroked-button color="warn" class="margin-right-16" [disabled]="isSessionStorageEmpty"
+              (click)="onClickClearStorage()" matTooltip="Wipe all session data from browser storage.">
+        clear session
       </button>
       <button mat-mini-fab color="warn" [disabled]="!(isLoggedIn$ | async)" (click)="onClickLogout()">
         <mat-icon>exit_to_app</mat-icon>

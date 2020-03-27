@@ -6,6 +6,10 @@
   margin-right: 8px;
 }
 
+.margin-right-16 {
+  margin-right: 16px;
+}
+
 .logout-card-outer {
   display: flex;
   align-items: center;
@@ -28,4 +32,9 @@
 
 .check-color {
   color: #00c853;
+}
+
+.component-width {
+  width: 60%;
+  min-width: 350px;
 }
