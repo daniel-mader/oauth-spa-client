@@ -1,76 +1,23 @@
-<mat-card class="mat-elevation-z2 component-width">
-  <!--  Logged in as: {{ userInfo?.sub }}-->
-
-  <!--  id claims (payload of id_token): <pre>{{ identityClaims | json }}</pre>-->
-  <!--  accessToken: {{ accessToken }}-->
+<mat-card class="mat-elevation-z4">
   <div class="logout-card-outer">
-    <div>
-<!--      <ng-container *ngIf="isLoggedIn$ | async; else loggedOut">-->
-<!--        <div>-->
-<!--          valid until: <b>{{ identityClaims?.exp * 1000 | date:'dd. MMM yyyy, HH:mm:ss' }}</b>-->
-<!--        </div>-->
-<!--      </ng-container>-->
-      <div *ngIf="isLoggedIn$ | async; else loggedOut" class="token-status">
-<!--        /userinfo:-->
-        <mat-icon class="margin-right-8">account_circle</mat-icon><b>{{ userInfo?.name }}</b>
-      </div>
-      <ng-template #loggedOut>
-        <div style="color: #888888"><b>No user logged in.</b></div>
-      </ng-template>
+    <div *ngIf="userProfile$ | async as profile; else noProfile" class="token-status">
+      <mat-icon class="margin-right-8">account_circle</mat-icon>
+      <div><b>{{ profile?.name }}</b></div>
     </div>
+    <ng-template #noProfile>
+<!--      <app-loading [isLoading]="true"></app-loading>-->
+      <div style="color: #888888"><b>No user logged in.</b></div>
+    </ng-template>
+
     <div>
       <button mat-stroked-button color="warn" class="margin-right-16" [disabled]="isSessionStorageEmpty"
-              (click)="onClickClearStorage()" matTooltip="Wipe all session data from browser storage.">
+              (click)="onClickClearStorage()"
+              matTooltip="Wipe all session data from browser storage without logging you out on the authorization server.">
         clear session
       </button>
-      <button mat-mini-fab color="warn" [disabled]="!(isLoggedIn$ | async)" (click)="onClickLogout()">
+      <button mat-mini-fab color="warn" [disabled]="!!!(userProfile$ | async)" (click)="onClickLogout()">
         <mat-icon>exit_to_app</mat-icon>
       </button>
     </div>
   </div>
-
-  <div style="margin-top: 16px;">
-    <mat-divider></mat-divider>
-
-    <div style="display: flex; flex-direction: row; justify-content: space-between; padding-top: 16px;">
-
-      <div class="token-status" matTooltip="expires: {{ accessToken?.expires | date:'dd. MMM yyyy, HH:mm:ss' }}">
-        <span>access_token</span>
-        <div class="icon-align">
-          <div *ngIf="accessToken?.hasValid; else noValidAccessToken">
-            <mat-icon class="check-color">check_circle_outline</mat-icon>
-          </div>
-          <ng-template #noValidAccessToken>
-            <mat-icon color="warn">highlight_off</mat-icon>
-          </ng-template>
-        </div>
-      </div>
-
-      <div class="token-status" matTooltip="expires: {{ idToken?.expires | date:'dd. MMM yyyy, HH:mm:ss' }}">
-        <span>id_token</span>
-        <div class="icon-align">
-          <div *ngIf="idToken?.hasValid; else noValidIdToken">
-            <mat-icon class="check-color">check_circle_outline</mat-icon>
-          </div>
-          <ng-template #noValidIdToken>
-            <mat-icon color="warn">highlight_off</mat-icon>
-          </ng-template>
-        </div>
-      </div>
-
-      <div class="token-status" matTooltip="not implemented yet">
-        <span>opaque_token</span>
-        <div class="icon-align">
-          <mat-icon>error_outline</mat-icon>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
 </mat-card>
-
-<!--<button mat-flat-button type="button" color="warn" [disabled]="!(isLoggedIn$ | async)" (click)="onClickLogout()">Logout</button>-->
-<!--<button mat-stroked-button type="button" color="warn" class="margin-10" (click)="onClickClearStorage()">-->
-<!--  <mat-icon>delete</mat-icon>Clear Storage-->
-<!--</button>-->

@@ -41,6 +41,7 @@ import { SettingsComponent } from './navigation/settings/settings.component';
 import { ErrorMessageComponent } from './shared/error-message/error-message.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { VisualizerComponent } from './visualizer/visualizer.component';
+import { TokenStatusComponent } from './visualizer/token-status/token-status.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { VisualizerComponent } from './visualizer/visualizer.component';
     SettingsComponent,
     LogoutComponent,
     ErrorMessageComponent,
-    LoadingComponent
+    LoadingComponent,
+    TokenStatusComponent
   ],
   imports: [
     BrowserModule,

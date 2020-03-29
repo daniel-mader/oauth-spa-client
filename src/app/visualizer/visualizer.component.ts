@@ -3,7 +3,13 @@ import { select, Store } from '@ngrx/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import { showError } from '../+state/app.actions';
-import { selectDarkMode } from '../+state/app.selectors';
+import {
+  selectClientConfigured,
+  selectDarkMode,
+  selectDiscoveryLoaded,
+  selectTokenReceived,
+  selectUserProfileLoading
+} from '../+state/app.selectors';
 import { authCodePkceFlowConfig } from '../flows/auth-code-pkce-flow/auth-code-pkce-flow-config';
 import { UserProfileService } from '../services/user-profile.service';
 
@@ -17,30 +23,38 @@ export class VisualizerComponent implements OnInit {
   identityClaims: object;
   isDarkTheme$: Observable<boolean> = this.store.pipe(select(selectDarkMode));
 
+  isClientConfigured$: Observable<boolean> = this.store.pipe(select(selectClientConfigured));
+  isDiscoveryLoaded$: Observable<boolean> = this.store.pipe(select(selectDiscoveryLoaded));
+  tokenReceived$: Observable<boolean> = this.store.pipe(select(selectTokenReceived));
+  isUserProfileLoading$: Observable<boolean> = this.store.pipe(select(selectUserProfileLoading));
+
+  showRawToken: boolean;
+  rawToken: string;
+
   userInfo: object;
 
   constructor(private oAuthService: OAuthService, private store: Store, private userProfileService: UserProfileService) {
   }
 
   ngOnInit(): void {
-    // console.log('configuring again...');
-    // this.oAuthService.configure(authCodePkceFlowConfig);
-    // console.log('configuring done.');
-
     this.identityClaims = this.oAuthService.getIdentityClaims();
+
+    // if (this.oAuthService.hasValidIdToken()) {
+    this.rawToken = this.oAuthService.getIdToken();
+    // }
+
     if (this.oAuthService.hasValidAccessToken()) {
-      console.log('LOADING USER PROFILE ...');
-      console.log('----', new Date(this.oAuthService.getAccessTokenExpiration()));
+      console.log('Valid access token.');
+      // this.userProfileService.getUserProfile();
+      // this.userProfileService.userInfo$.subscribe((info) => {
+      //   console.log('userProfile:', info);
+      //   this.userInfo = info;
+      // });
 
-      this.userProfileService.getUserProfile();
-
-      this.userProfileService.userInfo$.subscribe((info) => {
-        console.log('userProfile:', info);
-        this.userInfo = info;
-      });
 
       // this.userInfo = this.userProfileService.getUserProfile();
 
+      // produces error
       // this.oAuthService.loadUserProfile().then(
       //   (userInfo) => {
       //     console.log('RETURNED:', userInfo);
@@ -49,8 +63,13 @@ export class VisualizerComponent implements OnInit {
       //   (e) => {
       //     console.log('error loading user profile', e);
       //     this.store.dispatch(showError({message: e}));
-      //   });
+      //   }
+      // );
     }
+  }
+
+  toggleShowRawToken() {
+    this.showRawToken = !this.showRawToken;
   }
 
 }

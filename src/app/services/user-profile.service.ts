@@ -8,6 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UserProfileService {
 
+  // TODO: can be removed?
+
   // tslint:disable-next-line:variable-name
   private _userInfo: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>(undefined);
   public userInfo$: Observable<UserInfo> = this._userInfo.asObservable();

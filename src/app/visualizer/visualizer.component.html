@@ -1,45 +1,63 @@
-<app-logout class="position-logout"></app-logout>
+<div class="position-end margin-top-25">
+  <app-logout class="width-65"></app-logout>
+</div>
 
 <!--<h3 class="mat-subheading-2">Flow Visualizer</h3>-->
 <!-- TODO: rename jwt-visualizer -> flow-visualizer -->
 
+<div class="position-end">
+  <app-token-status class="margin-top width-65"></app-token-status>
+</div>
+
 <!--<div class="flat-card">-->
 <!--  <pre>{{ exampleJwt | json }}</pre>-->
 <!--</div>-->
-<mat-expansion-panel class="mat-elevation-z4 margin-top">
+<div class="position-end">
+<mat-expansion-panel class="mat-elevation-z4 margin-top width-65" [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Progress
     </mat-panel-title>
-<!--    <mat-panel-description>-->
+    <mat-panel-description>
 <!--      Type your name and age-->
-<!--    </mat-panel-description>-->
+      <app-loading [isLoading]="false"></app-loading>
+    </mat-panel-description>
   </mat-expansion-panel-header>
 <!--</mat-expansion-panel>-->
 
   <mat-card class="mat-elevation-z0">
     <div class="padding-bottom flex">
-      <app-loading [hasCompleted]="true"></app-loading>
-      <div>Configure client</div>
+      <div matTooltip="Loads the local config for the oauth service">Configure client</div>
+      <app-loading [isLoading]="!(isClientConfigured$ | async)"></app-loading>
+<!--      <mat-icon color="warn" style="margin: -2px;">error_outline</mat-icon>-->
+<!--      <app-loading [loadingState]="'loading'"></app-loading>-->
     </div>
     <mat-divider></mat-divider>
     <div class="padding-top padding-bottom flex">
-      <app-loading [hasCompleted]="true"></app-loading>
-      Perform login
+      <div matTooltip="Loads the discovery document from .well-known/openid-configuration">Load Discovery document</div>
+      <app-loading [isLoading]="!(isDiscoveryLoaded$ | async)"></app-loading>
     </div>
     <mat-divider></mat-divider>
+<!--    <div class="padding-top padding-bottom flex">-->
+<!--      Perform login-->
+<!--      <mat-icon color="warn" style="margin: -2px;">error_outline</mat-icon>-->
+<!--    </div>-->
+<!--    <mat-divider></mat-divider>-->
     <div class="padding-top padding-bottom flex">
-      <app-loading [hasCompleted]="true"></app-loading>
-      Fetch tokens
+      <div matTooltip="">Token received</div>
+<!--      <app-loading [isLoading]="!(hasToken$ | async)"></app-loading>-->
+<!--      <app-loading [isLoading]="!(tokenReceived$ | async)"></app-loading>-->
     </div>
     <mat-divider></mat-divider>
     <div class="padding-top flex">
-      <app-loading [hasCompleted]="true"></app-loading>
       Get user details
+      <!--      <app-loading [hasCompleted]="true"></app-loading>-->
+      <app-loading [isLoading]="isUserProfileLoading$ | async"></app-loading>
     </div>
   </mat-card>
 
 </mat-expansion-panel>
+</div>
 
 <mat-card class="mat-elevation-z4 margin-top">
   <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>/userinfo</b></h3>
@@ -49,6 +67,13 @@
 <!-- TODO: Alternative: mat-card -->
 <mat-card class="fill-height mat-elevation-z4 margin-top margin-bottom">
   <!--  <pre>{{ exampleJwt | json }}</pre>-->
-  <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>id_token (claims)</b></h3>
+  <div style="display: flex; justify-content: space-between;">
+    <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>id_token (claims)</b></h3>
+    <button mat-stroked-button (click)="toggleShowRawToken()">show raw id_token</button>
+  </div>
+  <div *ngIf="showRawToken">
+    <div style="word-break: break-all; font-family: monospace">{{ rawToken }}</div>
+    <mat-divider></mat-divider>
+  </div>
   <pre style="overflow: hidden; text-overflow: ellipsis;">{{ identityClaims | json }}</pre>
 </mat-card>

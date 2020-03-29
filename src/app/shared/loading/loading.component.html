@@ -1,9 +1,22 @@
-<div *ngIf="hasCompleted; else loading" class="padding-right spinner-margin">
+<div *ngIf="!isLoading; else loading" class="spinner-margin">
   <mat-icon class="check-color">check_circle_outline</mat-icon>
+<!--  <mat-icon [color]="color">check_circle_outline</mat-icon>-->
 </div>
 
 <ng-template #loading>
-  <div class="padding-right">
-    <mat-progress-spinner class="progress-spinner" [color]="color" [mode]="mode" diameter="20"></mat-progress-spinner>
-  </div>
+  <mat-progress-spinner class="progress-spinner" [color]="color" [mode]="mode" diameter="20"></mat-progress-spinner>
+<!--    <mat-progress-spinner [mode]="mode" diameter="20"></mat-progress-spinner>-->
 </ng-template>
+
+<!-- TODO: should this be handled here or is error state separate? -->
+<div [ngSwitch]="loadingState">
+  <div *ngSwitchCase="'success'">
+    success
+  </div>
+  <div *ngSwitchCase="'error'">
+    error
+  </div>
+  <div *ngSwitchCase="'loading'">
+    loading
+  </div>
+</div>

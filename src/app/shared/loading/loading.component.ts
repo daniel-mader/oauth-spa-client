@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
+export type LoadingState = 'success' | 'error' | 'loading';
+
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
@@ -9,7 +11,8 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 })
 export class LoadingComponent implements OnInit {
 
-  @Input() hasCompleted: boolean;
+  @Input() isLoading: boolean; // TODO: --> change to 'isLoading'
+  @Input() loadingState: LoadingState;
 
   color: ThemePalette = 'accent';
   mode: ProgressSpinnerMode = 'indeterminate';

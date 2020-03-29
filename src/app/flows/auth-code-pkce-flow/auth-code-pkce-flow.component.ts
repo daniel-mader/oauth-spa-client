@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { showError } from '../../+state/app.actions';
+import { configureSuccess, showError } from '../../+state/app.actions';
 import { selectDefaultIssuer } from '../../+state/app.selectors';
 import { PreferencesService } from '../../services/preferences.service';
 import { authCodePkceFlowConfig } from './auth-code-pkce-flow-config';
@@ -24,6 +24,7 @@ export class AuthCodePkceFlowComponent implements OnInit {
       // authCodePkceFlowConfig.issuer = issuer;
       console.log('onInit(): Configuring Auth Code Flow (with PKCE) ...');
       this.oauthService.configure(authCodePkceFlowConfig);
+      this.store.dispatch(configureSuccess());
       console.log('Configuring done.');
       console.log('Loading discovery document and try log in ...');
       this.oauthService.loadDiscoveryDocumentAndTryLogin().then(

@@ -1,0 +1,78 @@
+<mat-card class="mat-elevation-z4">
+  <mat-card-subtitle>
+    Token status
+  </mat-card-subtitle>
+  <div class="pb">
+    <b>Time: </b>{{ currentTime | date:'HH:mm:ss'}}
+  </div>
+  <mat-divider></mat-divider>
+  <div class="pt pb logout-card-outer">
+    <b>id_token</b> expires in: <div style="font-family: monospace">{{ idToken?.expiresIn * 1000 | date: 'mm:ss' }}</div>
+    <button mat-mini-fab color="primary"><mat-icon>refresh</mat-icon></button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="pt" style="display: flex; justify-content: space-between;">
+    <div>
+      <b>access_token</b>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+<!--      expires in: {{ accessToken?.expiresIn * 1000 | date: 'mm:ss' }}-->
+      <div style="display: flex; align-items: center;">
+        <span style="background: #888888; color: #eeeeee; padding: 2px 8px; border-radius: 25px; font-size: 12px;">expires at</span>
+        <div style="font-family: inherit; font-size: 12px; text-align: center; width: 120px;">{{ accessToken?.expires | date: 'dd. MMM yyyy, HH:mm:ss' }}</div>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <span style="background: #888888; color: #eeeeee; padding: 2px 8px; border-radius: 25px; font-size: 12px;">expires in</span>
+        <div style="font-family: monospace; font-size: 12px; text-align: center; width: 120px;"><b>{{ accessToken?.expiresIn * 1000 | date: 'mm:ss' }}</b></div>
+      </div>
+      <div style="border: 1px solid rgba(0, 0, 0, .12); border-radius: 4px; height: 50px; display: flex; flex-direction: column; align-items: center;">
+        <span class="expiry-text">expires in</span>
+        <div style="font-family: monospace">{{ accessToken?.expiresIn * 1000 | date: 'mm:ss' }}</div>
+      </div>
+    </div>
+    <button mat-mini-fab color="primary"><mat-icon>refresh</mat-icon></button>
+  </div>
+
+
+
+  <div class="margin-top-16">
+    <mat-divider></mat-divider>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; padding-top: 16px;">
+
+      <div class="token-status" matTooltip="expires: {{ accessToken?.expires | date:'dd. MMMM yyyy, HH:mm:ss' }}">
+        <span>access_token</span>
+        <div class="icon-align">
+          <div *ngIf="accessToken$ | async; else noValidAccessToken">
+            <mat-icon class="check-color">check_circle_outline</mat-icon>
+          </div>
+          <ng-template #noValidAccessToken>
+            <mat-icon color="warn">highlight_off</mat-icon>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="token-status" matTooltip="expires: {{ idToken?.expires | date:'dd. MMMM yyyy, HH:mm:ss' }}">
+        <span>id_token</span>
+        <div class="icon-align">
+          <div *ngIf="idToken.hasValid; else noValidIdToken">
+            <mat-icon class="check-color">check_circle_outline</mat-icon>
+          </div>
+          <ng-template #noValidIdToken>
+            <mat-icon color="warn">highlight_off</mat-icon>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="token-status" matTooltip="not implemented yet">
+        <span>opaque_token</span>
+        <div class="icon-align">
+          <mat-icon>highlight_off</mat-icon>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>
