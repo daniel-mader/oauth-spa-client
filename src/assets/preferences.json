@@ -8,5 +8,6 @@
     "implicit": false,
     "passwordCredential": false
   },
-  "darkMode": false
+  "darkMode": false,
+  "automaticTokenRefresh": true
 }

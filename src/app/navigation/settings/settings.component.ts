@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { setDarkMode, setIssuer, updateDisplayedFlows } from '../../+state/app.actions';
-import { selectDarkMode, selectDefaultIssuer, selectDisplayedFlows } from '../../+state/app.selectors';
+import { setAutomaticTokenRefresh, setDarkMode, setIssuer, updateDisplayedFlows } from '../../+state/app.actions';
+import { selectAutomaticTokenRefresh, selectDarkMode, selectDefaultIssuer, selectDisplayedFlows } from '../../+state/app.selectors';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +15,10 @@ export class SettingsComponent implements OnInit {
 
   isDarkTheme$: Observable<boolean> = this.store.pipe(select(selectDarkMode));
   isDarkTheme: boolean;
+
+  isAutomaticTokenRefresh$: Observable<boolean> = this.store.pipe(select(selectAutomaticTokenRefresh));
+  isAutomaticTokenRefresh: boolean;
+
   authServer$: Observable<string> = this.store.pipe(select(selectDefaultIssuer));
 
   issuerField = new FormControl('', {updateOn: 'blur'});
@@ -33,6 +37,10 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.isDarkTheme$.subscribe((isDarkTheme) => {
       this.isDarkTheme = isDarkTheme;
+    });
+
+    this.isAutomaticTokenRefresh$.subscribe((isAutomaticTokenRefresh) => {
+      this.isAutomaticTokenRefresh = isAutomaticTokenRefresh;
     });
 
     this.authServer$.subscribe((authServer) => {
@@ -54,6 +62,11 @@ export class SettingsComponent implements OnInit {
 
   toggleDarkTheme(checked: boolean) {
     this.store.dispatch(setDarkMode({isDarkMode: checked}));
+  }
+
+  toggleAutomaticTokenRefresh(checked: boolean): void {
+    this.store.dispatch(setAutomaticTokenRefresh({automaticTokenRefresh: checked}));
+    // this.oauthService.setupAutomaticSilentRefresh();
   }
 
   toggleFlow(flow: any, checked: boolean) {

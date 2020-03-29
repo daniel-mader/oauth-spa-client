@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
-export const setDarkMode = createAction('[Settings] Set Dark Mode', props<{ isDarkMode: boolean }>());
+export const setDarkMode = createAction('[Preferences] Set Dark Mode', props<{ isDarkMode: boolean }>());
 export const setIssuer = createAction('[Settings] Set Issuer', props<{ issuer: string }>());
+export const setAutomaticTokenRefresh = createAction('[Settings] Set Automatic Token Refresh', props<{ automaticTokenRefresh: boolean }>());
 
 export const logout = createAction('[Login] Logout');
 export const logoutSuccess = createAction('[Login] Logout Success');

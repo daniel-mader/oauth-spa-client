@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/app.actions';
+import { setAutomaticTokenRefresh, setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/app.actions';
 import { selectDefaultIssuer } from '../+state/app.selectors';
 import preferences from '../../assets/preferences.json';
 
@@ -21,6 +21,7 @@ export class PreferencesService {
       implicit: preferences.showFlows.implicit,
       password: preferences.showFlows.passwordCredential
     }));
+    this.store.dispatch(setAutomaticTokenRefresh({automaticTokenRefresh: preferences.automaticTokenRefresh}));
     console.log('Preferences loaded successfully from json file.');
   }
 

@@ -12,7 +12,7 @@
 
 <mat-divider></mat-divider>
 
-<mat-slide-toggle class="padding-item" disabled>Refresh tokens automatically</mat-slide-toggle>
+<mat-slide-toggle class="padding-item" [checked]="isAutomaticTokenRefresh" (change)="toggleAutomaticTokenRefresh($event.checked)">Refresh tokens automatically</mat-slide-toggle>
 
 <mat-divider></mat-divider>
 

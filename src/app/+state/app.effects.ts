@@ -10,7 +10,7 @@ import {
   getUserProfile,
   getUserProfileSuccess,
   logout,
-  logoutSuccess, setAccessToken,
+  logoutSuccess, setAccessToken, setAutomaticTokenRefresh, setIdToken,
   showError,
   toggleSettingsDrawer,
   tokenReceived
@@ -37,14 +37,19 @@ export class AppEffects {
     ), { dispatch: false}
   );
 
-  onTokenReceived$ = createEffect(() => // token Received either from oauthservice or from store
+  onTokenReceivedReadFromSessionStorage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(tokenReceived),
       map(() => {
-        // this.store.dispatch(loginSuccess());
-        return getUserProfile();
+        const accessToken = sessionStorage.getItem('access_token');
+        const accessTokenExpires = sessionStorage.getItem('expires_at');
+        this.store.dispatch(setAccessToken({value: accessToken, expiresAt: +accessTokenExpires}));
+
+        const idToken = sessionStorage.getItem('id_token');
+        const idTokenExpires = sessionStorage.getItem('id_token_expires_at');
+        this.store.dispatch(setIdToken({value: idToken, expiresAt: +idTokenExpires}));
       })
-    )
+    ), { dispatch: false }
   );
 
   onSetAccessToken$ = createEffect(() =>
@@ -54,6 +59,19 @@ export class AppEffects {
         return getUserProfile();
       })
     )
+  );
+
+  // TODO: effect activate automatic token refresh
+  onSetAutomaticTokenRefresh$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(setAutomaticTokenRefresh),
+      map(({automaticTokenRefresh}) => {
+        if (automaticTokenRefresh) {
+          console.log('Turning on automatic token refresh ...');
+          this.oauthService.setupAutomaticSilentRefresh();
+        }
+      })
+    ), { dispatch: false }
   );
 
   loadUserProfile$: Observable<Action> = createEffect(() =>
