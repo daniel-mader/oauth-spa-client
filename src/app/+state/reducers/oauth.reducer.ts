@@ -32,7 +32,7 @@ const oauthReducer = createReducer(
   initialState,
   on(Actions.configureSuccess, (state, {}) => ({...state, isConfigured: true})),
   on(Actions.discoveryDocumentLoadedSuccess, (state, {}) => ({...state, isDiscoveryLoaded: true})),
-  on(Actions.tokenReceived, (state, {}) => ({...state, tokenReceived: true})),
+  on(Actions.tokenReceived, (state, {}) => ({...state, tokenReceived: true})), // TODO: what for?
   on(Actions.getUserProfile, (state, {}) => ({...state, userProfileLoading: true})),
   on(Actions.getUserProfileSuccess, (state, { userProfile }) => ({...state, userProfile, userProfileLoading: false})),
   on(Actions.setIdToken, (state, { value, expiresAt }) => ({...state, idToken: {value, expiresAt}})),

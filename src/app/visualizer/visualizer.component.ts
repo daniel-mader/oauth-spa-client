@@ -7,7 +7,6 @@ import {
   selectClientConfigured,
   selectDarkMode,
   selectDiscoveryLoaded,
-  selectTokenReceived,
   selectUserProfileLoading
 } from '../+state/app.selectors';
 import { authCodePkceFlowConfig } from '../flows/auth-code-pkce-flow/auth-code-pkce-flow-config';
@@ -25,8 +24,9 @@ export class VisualizerComponent implements OnInit {
 
   isClientConfigured$: Observable<boolean> = this.store.pipe(select(selectClientConfigured));
   isDiscoveryLoaded$: Observable<boolean> = this.store.pipe(select(selectDiscoveryLoaded));
-  tokenReceived$: Observable<boolean> = this.store.pipe(select(selectTokenReceived));
+  // tokenReceived$: Observable<boolean> = this.store.pipe(select(selectTokenReceived));
   isUserProfileLoading$: Observable<boolean> = this.store.pipe(select(selectUserProfileLoading));
+  isTokenInBrowserStorage: boolean;
 
   showRawToken: boolean;
   rawToken: string;
@@ -42,6 +42,10 @@ export class VisualizerComponent implements OnInit {
     // if (this.oAuthService.hasValidIdToken()) {
     this.rawToken = this.oAuthService.getIdToken();
     // }
+
+    if (sessionStorage.getItem('access_token') !== null || sessionStorage.getItem('id_token') != null) {
+      this.isTokenInBrowserStorage = true;
+    }
 
     if (this.oAuthService.hasValidAccessToken()) {
       console.log('Valid access token.');

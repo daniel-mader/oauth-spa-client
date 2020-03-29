@@ -25,7 +25,7 @@ export class ErrorMessageComponent implements OnInit {
   }
 
   showError(message: string) {
-    this.snackBar.open(message, 'Dismiss', {
+    this.snackBar.open(message, 'DISMISS', {
     });
   }
 

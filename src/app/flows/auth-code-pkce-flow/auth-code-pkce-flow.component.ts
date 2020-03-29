@@ -34,32 +34,10 @@ export class AuthCodePkceFlowComponent implements OnInit {
           this.store.dispatch(showError({message: e.params.error}));
         }
       );
-      // this.oauthService.initCodeFlow();
     });
   }
 
-  initAuthCodeFlow(): void {
-    console.log('initAuthCodeFlow(): Configuring Auth Code Flow with PKCE ...');
-    this.oauthService.configure(authCodePkceFlowConfig);
-    console.log('Loading Discovery Document ...');
-    console.log(authCodePkceFlowConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(
-      () => {
-        this.oauthService.tryLogin().then(
-          () => {
-          console.log('REACHED!');
-          },
-          (e) => console.error('error', e)
-        );
-        console.log('Init Code Flow ...');
-        this.oauthService.initCodeFlow();
-      },
-      (e) => console.error('error', e)
-    );
-  }
-
   onClickAuthCodeFlow(): void {
-    // this.initAuthCodeFlow();
     console.log('Init Code Flow ...');
     this.oauthService.initCodeFlow();
   }

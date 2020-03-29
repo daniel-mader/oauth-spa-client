@@ -44,7 +44,13 @@
 <!--    </div>-->
 <!--    <mat-divider></mat-divider>-->
     <div class="padding-top padding-bottom flex">
-      <div matTooltip="">Token received</div>
+      <div matTooltip="">Token in browser storage</div>
+      <ng-container *ngIf="isTokenInBrowserStorage; else noTokens;">
+        <app-loading [loadingState]="'success'"></app-loading>
+      </ng-container>
+      <ng-template #noTokens>
+        <app-loading [loadingState]="'error'"></app-loading>
+      </ng-template>
 <!--      <app-loading [isLoading]="!(hasToken$ | async)"></app-loading>-->
 <!--      <app-loading [isLoading]="!(tokenReceived$ | async)"></app-loading>-->
     </div>

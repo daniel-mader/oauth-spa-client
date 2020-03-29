@@ -37,15 +37,33 @@ export class TokenStatusComponent implements OnInit {
     setInterval(() => {
       this.currentTime = Date.now();
     }, 1000);
+
     this.checkTokenExpiration();
 
-    const accessToken = this.oauthService.getAccessToken();
-    const idToken = this.oauthService.getIdToken();
-    console.log(accessToken);
-    console.log(idToken);
-    this.idToken.expires = this.oauthService.getIdTokenExpiration();
-    this.accessToken.expires = this.oauthService.getAccessTokenExpiration();
+    this.accessToken$.subscribe((token) => {
+      if (token) {
+        console.log('---- access token', token);
+        this.accessToken.expires = token.expiresAt;
+        // TODO: start token expiration calculation here
+      }
+    });
 
+    this.idToken$.subscribe((token) => {
+      if (token) {
+        console.log('---- id token', token);
+        this.idToken.expires = token.expiresAt;
+        // TODO: start token expiration calculation here
+      }
+    });
+
+    // const accessToken = this.oauthService.getAccessToken();
+    // const idToken = this.oauthService.getIdToken();
+    // console.log(accessToken);
+    // console.log(idToken);
+    // this.idToken.expires = this.oauthService.getIdTokenExpiration();
+    // this.accessToken.expires = this.oauthService.getAccessTokenExpiration();
+
+    // TODO: does calling the oauth service here set the tokens correctly on page reload / logout / etc.?
     if (this.oauthService.hasValidIdToken()) {
       const expiry = this.oauthService.getIdTokenExpiration();
       const value = this.oauthService.getIdToken();
@@ -58,6 +76,14 @@ export class TokenStatusComponent implements OnInit {
       this.store.dispatch(setAccessToken({value, expiresAt: expiry}));
     }
 
+  }
+
+  refreshTokens(): void {
+    // console.log(this.oauthService.getRefreshToken());
+    this.oauthService.refreshToken().then(
+      r => console.log('success refresh:', r),
+      () => console.warn('error')
+    );
   }
 
   checkTokenExpiration(): void {

@@ -11,7 +11,7 @@ export type LoadingState = 'success' | 'error' | 'loading';
 })
 export class LoadingComponent implements OnInit {
 
-  @Input() isLoading: boolean; // TODO: --> change to 'isLoading'
+  @Input() isLoading: boolean;
   @Input() loadingState: LoadingState;
 
   color: ThemePalette = 'accent';

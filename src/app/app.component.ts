@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { OAuthErrorEvent, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthErrorEvent, OAuthInfoEvent, OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import {
   discoveryDocumentLoadedSuccess,
@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     this.oauthService.events.subscribe(e => {
       if (e instanceof OAuthErrorEvent) {
         console.error(e);
+        this.store.dispatch(showError({message: e.type}));
       } else {
         console.warn(e);
         if (e.type === 'discovery_document_loaded') {
@@ -46,8 +47,9 @@ export class AppComponent implements OnInit {
         if (e.type === 'token_refreshed') {
           console.log('token refreshed');
         }
-        if (e.type === 'token_expires') {
-          this.store.dispatch(showError({message: 'token_expires soon ...'}));
+        if (e.type === 'token_expires' && e instanceof OAuthInfoEvent) {
+          // this.store.dispatch(showError({message: e.type + ' : ' + e.info}));
+          console.log(e.type, e.info);
         }
         if (e.type === 'user_profile_loaded') {
         }
