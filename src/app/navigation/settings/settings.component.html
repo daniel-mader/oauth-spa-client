@@ -5,6 +5,11 @@
   <input matInput id="issuerField" placeholder="" [formControl]="issuerField">
 </mat-form-field>
 
+<mat-form-field appearance="outline" class="fill-space-horizontal">
+  <mat-label>Client Id</mat-label>
+  <input matInput id="clientIdField" placeholder="" [formControl]="clientIdField">
+</mat-form-field>
+
 <mat-divider></mat-divider>
 
 <mat-slide-toggle class="padding-item" [checked]="isDarkTheme" (change)="toggleDarkTheme($event.checked)">Dark theme

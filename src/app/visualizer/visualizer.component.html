@@ -28,14 +28,19 @@
   <mat-card class="mat-elevation-z0">
     <div class="padding-bottom flex">
       <div matTooltip="Loads the local config for the oauth service">Configure client</div>
-      <app-loading [isLoading]="!(isClientConfigured$ | async)"></app-loading>
+      <app-loading [loadingState]="(clientConfigured$ | async)"></app-loading>
 <!--      <mat-icon color="warn" style="margin: -2px;">error_outline</mat-icon>-->
 <!--      <app-loading [loadingState]="'loading'"></app-loading>-->
     </div>
     <mat-divider></mat-divider>
     <div class="padding-top padding-bottom flex">
       <div matTooltip="Loads the discovery document from .well-known/openid-configuration">Load Discovery document</div>
-      <app-loading [isLoading]="!(isDiscoveryLoaded$ | async)"></app-loading>
+      <app-loading [loadingState]="(discoveryDocumentLoaded$ | async)"></app-loading>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="padding-top padding-bottom flex">
+      <div matTooltip="Loads the discovery document from .well-known/openid-configuration">Try login</div>
+      <app-loading [loadingState]="(tryLoading$ | async)"></app-loading>
     </div>
     <mat-divider></mat-divider>
 <!--    <div class="padding-top padding-bottom flex">-->
@@ -57,8 +62,7 @@
     <mat-divider></mat-divider>
     <div class="padding-top flex">
       Get user details
-      <!--      <app-loading [hasCompleted]="true"></app-loading>-->
-      <app-loading [isLoading]="isUserProfileLoading$ | async"></app-loading>
+      <app-loading [loadingState]="userProfileLoading$ | async"></app-loading>
     </div>
   </mat-card>
 
@@ -74,7 +78,7 @@
 <mat-card class="fill-height mat-elevation-z4 margin-top margin-bottom">
   <!--  <pre>{{ exampleJwt | json }}</pre>-->
   <div style="display: flex; justify-content: space-between;">
-    <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>id_token (claims)</b></h3>
+    <h3 class="{{ (isDarkTheme$ | async) ? 'color-accent-dark' : 'color-accent-light' }}"><b>identity claims</b></h3>
     <button mat-stroked-button (click)="toggleShowRawToken()">show raw id_token</button>
   </div>
   <div *ngIf="showRawToken">

@@ -33,7 +33,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(toggleSettingsDrawer),
       filter(({isOpen}) => !isOpen),
-      map(() => this.preferences.saveStoreToPreferencesFile())
+      map(() => this.preferences.saveToBrowserLocalStorage())
     ), { dispatch: false}
   );
 
@@ -61,7 +61,7 @@ export class AppEffects {
     )
   );
 
-  // TODO: effect activate automatic token refresh
+  // TODO: how to turn off automatic token refresh? (idea: simply not set it up on page reload)
   onSetAutomaticTokenRefresh$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setAutomaticTokenRefresh),
@@ -78,7 +78,8 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(getUserProfile),
       mergeMap(payload => {
-        return of(payload).pipe(delay(2000));
+        return of(payload).pipe(delay(2000)); // TODO: <--- wait for 2 seconds?
+        // TODO: if not, then error: "Cannot read property 'toLowerCase' of null at HttpXsrfInterceptor.intercept"
       }),
       tap(() => console.log('Loading user profile ...')),
       mergeMap(() => {

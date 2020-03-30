@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +38,7 @@ import { PasswordFlowComponent } from './flows/password-flow/password-flow.compo
 import { LogoutComponent } from './logout/logout.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 import { SettingsComponent } from './navigation/settings/settings.component';
+import { DelayInterceptor } from './services/delay.interceptor';
 import { ErrorMessageComponent } from './shared/error-message/error-message.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { VisualizerComponent } from './visualizer/visualizer.component';
@@ -89,7 +90,7 @@ import { TokenStatusComponent } from './visualizer/token-status/token-status.com
     MatProgressSpinnerModule,
     MatExpansionModule
   ],
-  providers: [MatSnackBar],
+  providers: [MatSnackBar, { provide: HTTP_INTERCEPTORS, useClass: DelayInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

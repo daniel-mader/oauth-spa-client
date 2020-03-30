@@ -42,7 +42,7 @@ export class TokenStatusComponent implements OnInit {
 
     this.accessToken$.subscribe((token) => {
       if (token) {
-        console.log('---- access token', token);
+        // console.log('---- access token', token);
         this.accessToken.expires = token.expiresAt;
         // TODO: start token expiration calculation here
       }
@@ -50,7 +50,7 @@ export class TokenStatusComponent implements OnInit {
 
     this.idToken$.subscribe((token) => {
       if (token) {
-        console.log('---- id token', token);
+        // console.log('---- id token', token);
         this.idToken.expires = token.expiresAt;
         // TODO: start token expiration calculation here
       }

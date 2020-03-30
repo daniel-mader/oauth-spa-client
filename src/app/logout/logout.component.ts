@@ -14,7 +14,6 @@ export class LogoutComponent implements OnInit {
 
   // TODO: if no user profile is loaded, you can not hit the "log out" button --> load profile from sessionStorage
   userProfile$: Observable<object> = this.store.pipe(select(selectUserProfile));
-  isLoggedIn$: Observable<boolean>; // = oauthservice.isloggedin()
   isSessionStorageEmpty: boolean;
 
   // accessToken$: Observable<any> = this.store.pipe(select(selectAccessToken));

@@ -2,7 +2,7 @@
   <div class="logout-card-outer">
     <div *ngIf="userProfile$ | async as profile; else noProfile" class="token-status">
       <mat-icon class="margin-right-8">account_circle</mat-icon>
-      <div><b>{{ profile?.name }}</b></div>
+      <div matTooltip="{{ profile?.email }}"><b>{{ profile?.name }}</b></div>
     </div>
     <ng-template #noProfile>
 <!--      <app-loading [isLoading]="true"></app-loading>-->

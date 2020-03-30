@@ -4,6 +4,7 @@ import * as Actions from '../app.actions';
 export interface State {
   isDarkMode: boolean;
   issuer: string;
+  clientId: string;
   settingsDrawerOpen: boolean;
   automaticTokenRefresh: boolean;
   displayedFlows: {
@@ -16,6 +17,7 @@ export interface State {
 const initialState: State = {
   isDarkMode: false,
   issuer: undefined,
+  clientId: undefined,
   settingsDrawerOpen: false,
   automaticTokenRefresh: false,
   displayedFlows: {
@@ -29,6 +31,7 @@ const preferencesReducer = createReducer(
   initialState,
   on(Actions.setDarkMode, (state, {isDarkMode}) => ({...state, isDarkMode})),
   on(Actions.setIssuer, (state, {issuer}) => ({...state, issuer})),
+  on(Actions.setClientId, (state, {clientId}) => ({...state, clientId})),
   on(Actions.toggleSettingsDrawer, (state, {isOpen}) => ({...state, settingsDrawerOpen: isOpen})),
   on(Actions.updateDisplayedFlows, (state, {authcodepkce, implicit, password}) => ({
       ...state, displayedFlows: {authcodepkce, implicit, password}

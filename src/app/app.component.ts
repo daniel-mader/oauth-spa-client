@@ -3,8 +3,8 @@ import { select, Store } from '@ngrx/store';
 import { OAuthErrorEvent, OAuthInfoEvent, OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import {
-  discoveryDocumentLoadedSuccess,
-  getUserProfile,
+  discoveryDocumentLoadSuccess,
+  getUserProfile, getUserProfileError,
   getUserProfileSuccess,
   showError,
   toggleSettingsDrawer,
@@ -36,10 +36,13 @@ export class AppComponent implements OnInit {
       if (e instanceof OAuthErrorEvent) {
         console.error(e);
         this.store.dispatch(showError({message: e.type}));
+        if (e.type === 'user_profile_load_error') {
+          this.store.dispatch(getUserProfileError());
+        }
       } else {
         console.warn(e);
         if (e.type === 'discovery_document_loaded') {
-          this.store.dispatch(discoveryDocumentLoadedSuccess());
+          this.store.dispatch(discoveryDocumentLoadSuccess());
         }
         if (e.type === 'token_received') {
           this.store.dispatch(tokenReceived());
@@ -48,7 +51,6 @@ export class AppComponent implements OnInit {
           console.log('token refreshed');
         }
         if (e.type === 'token_expires' && e instanceof OAuthInfoEvent) {
-          // this.store.dispatch(showError({message: e.type + ' : ' + e.info}));
           console.log(e.type, e.info);
         }
         if (e.type === 'user_profile_loaded') {
@@ -59,7 +61,7 @@ export class AppComponent implements OnInit {
         // 'discovery_document_load_error' |
         // 'discovery_document_validation_error' |
         // 'user_profile_loaded' |
-        // 'user_profile_load_error' |
+        //      'user_profile_load_error' |
         //      'token_received' |
         // 'token_error' |
         // 'code_error' |

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { setAutomaticTokenRefresh, setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/app.actions';
-import { selectDefaultIssuer } from '../+state/app.selectors';
+import { setAutomaticTokenRefresh, setClientId, setDarkMode, setIssuer, updateDisplayedFlows } from '../+state/app.actions';
+import { selectClientId, selectDefaultIssuer } from '../+state/app.selectors';
 import preferences from '../../assets/preferences.json';
 
 @Injectable({
@@ -12,10 +12,18 @@ export class PreferencesService {
   constructor(private store: Store) {
   }
 
-  /* loads preferences.json file and dispatches actions to set values to store */
+  /*
+  * loads preferences.json file and dispatches actions to set values to store
+  * if session values are in localStorage, those values are preferred
+  */
   loadPreferencesFileToStore() {
+    const issuer = localStorage.getItem('issuer');
+    issuer ? this.store.dispatch(setIssuer({issuer})) : this.store.dispatch(setIssuer({issuer: preferences.openIdConfig.issuer}));
+
+    const clientId = localStorage.getItem('clientId');
+    clientId ? this.store.dispatch(setClientId({clientId})) : this.store.dispatch(setClientId({clientId: preferences.openIdConfig.clientId}));
+
     this.store.dispatch(setDarkMode({isDarkMode: preferences.darkMode}));
-    this.store.dispatch(setIssuer({issuer: preferences.openIdConfig.issuer}));
     this.store.dispatch(updateDisplayedFlows({
       authcodepkce: preferences.showFlows.authCodePkce,
       implicit: preferences.showFlows.implicit,
@@ -25,10 +33,13 @@ export class PreferencesService {
     console.log('Preferences loaded successfully from json file.');
   }
 
-  saveStoreToPreferencesFile() {
+  /* saves user-defined changes to local storage */
+  saveToBrowserLocalStorage() {
     this.store.pipe(select(selectDefaultIssuer)).subscribe((issuer) => {
-      // console.log('Saving to local file:', issuer);
-      // preferences.openIdConfig.defaultIssuer = issuer;
+      localStorage.setItem('issuer', issuer);
+    });
+    this.store.pipe(select(selectClientId)).subscribe((clientId) => {
+      localStorage.setItem('clientId', clientId);
     });
   }
 

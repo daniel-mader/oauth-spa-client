@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 export const setDarkMode = createAction('[Preferences] Set Dark Mode', props<{ isDarkMode: boolean }>());
 export const setIssuer = createAction('[Settings] Set Issuer', props<{ issuer: string }>());
+export const setClientId = createAction('[Settings] Set Client ID', props<{ clientId: string }>());
 export const setAutomaticTokenRefresh = createAction('[Settings] Set Automatic Token Refresh', props<{ automaticTokenRefresh: boolean }>());
 
 export const logout = createAction('[Login] Logout');
@@ -15,10 +16,17 @@ export const updateDisplayedFlows = createAction(
 
 export const showError = createAction('[Error] Show Error', props<{ message: string }>());
 
-export const configureSuccess = createAction('[OAuth Service] Client Configure Success');
+export const clientConfigure = createAction('[OAuth Service] Client Configure');
+export const clientConfigureSuccess = createAction('[OAuth Service] Client Configure Success');
 
 // oauth events
-export const discoveryDocumentLoadedSuccess = createAction('[OAuth] Discovery Loaded Success');
+export const discoveryDocumentLoad = createAction('[OAuth] Discovery Load');
+export const discoveryDocumentLoadSuccess = createAction('[OAuth] Discovery Load Success');
+export const discoveryDocumentLoadError = createAction('[OAuth] Discovery Load Error');
+
+export const tryLogin = createAction('[OAuth] Try Login');
+export const tryLoginSuccess = createAction('[OAuth] Try Login Success');
+export const tryLoginError = createAction('[OAuth] Try Login Error');
 
 export const tokenReceived = createAction('[OAuth] Token Received');
 export const tokenRefreshed = createAction('[OAuth] Token Refreshed');

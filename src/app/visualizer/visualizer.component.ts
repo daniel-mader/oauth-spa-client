@@ -6,11 +6,12 @@ import { showError } from '../+state/app.actions';
 import {
   selectClientConfigured,
   selectDarkMode,
-  selectDiscoveryLoaded,
+  selectDiscoveryLoaded, selectTryLogin,
   selectUserProfileLoading
 } from '../+state/app.selectors';
 import { authCodePkceFlowConfig } from '../flows/auth-code-pkce-flow/auth-code-pkce-flow-config';
 import { UserProfileService } from '../services/user-profile.service';
+import { LoadingState } from '../shared/loading/loading.component';
 
 @Component({
   selector: 'app-visualizer',
@@ -22,11 +23,12 @@ export class VisualizerComponent implements OnInit {
   identityClaims: object;
   isDarkTheme$: Observable<boolean> = this.store.pipe(select(selectDarkMode));
 
-  isClientConfigured$: Observable<boolean> = this.store.pipe(select(selectClientConfigured));
-  isDiscoveryLoaded$: Observable<boolean> = this.store.pipe(select(selectDiscoveryLoaded));
+  clientConfigured$: Observable<LoadingState | undefined> = this.store.pipe(select(selectClientConfigured));
+  discoveryDocumentLoaded$: Observable<LoadingState | undefined> = this.store.pipe(select(selectDiscoveryLoaded));
+  tryLoading$: Observable<LoadingState | undefined> = this.store.pipe(select(selectTryLogin));
   // tokenReceived$: Observable<boolean> = this.store.pipe(select(selectTokenReceived));
-  isUserProfileLoading$: Observable<boolean> = this.store.pipe(select(selectUserProfileLoading));
-  isTokenInBrowserStorage: boolean;
+  userProfileLoading$: Observable<LoadingState | undefined> = this.store.pipe(select(selectUserProfileLoading));
+  isTokenInBrowserStorage: boolean; // TODO: --> Observable
 
   showRawToken: boolean;
   rawToken: string;
