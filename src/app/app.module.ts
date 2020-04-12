@@ -43,6 +43,7 @@ import { ErrorMessageComponent } from './shared/error-message/error-message.comp
 import { LoadingComponent } from './shared/loading/loading.component';
 import { VisualizerComponent } from './visualizer/visualizer.component';
 import { TokenStatusComponent } from './visualizer/token-status/token-status.component';
+import { ResourceComponent } from './resource/resource.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { TokenStatusComponent } from './visualizer/token-status/token-status.com
     LogoutComponent,
     ErrorMessageComponent,
     LoadingComponent,
-    TokenStatusComponent
+    TokenStatusComponent,
+    ResourceComponent
   ],
   imports: [
     BrowserModule,

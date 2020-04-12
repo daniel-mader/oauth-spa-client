@@ -1,5 +1,6 @@
 .mat-app-background {
-  height: 100vh;
+  //height: 100vh;
+  background-color: #888888;
 }
 
 .vertical-divider {
@@ -14,7 +15,28 @@
 }
 
 .column-height {
-  min-height: 80vh;
+  //min-height: 80vh;
+  min-height: 600px;
+}
+
+.width-75-percent {
+  width: 75%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.sticky-navbar {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100% !important;
+}
+
+.sidenav-container {
+  margin: auto;
+  margin-top: 64px !important;
+  flex: 1;
+  //width: 75%;
 }
 
 mat-sidenav {
@@ -32,5 +54,14 @@ main {
 }
 
 .login-width {
-  min-width: 25%;
+  min-width: 275px;
+}
+
+.resource-width {
+  min-width: 275px;
+}
+
+.arrow {
+  color: #888888;
+  padding: 0 24px;
 }

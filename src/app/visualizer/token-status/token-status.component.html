@@ -12,7 +12,7 @@
       <div style="display: flex; align-items: stretch; justify-content: space-between;">
         <div style="border: 1px solid #ddd; padding: 2px 8px; border-radius: 32px; display: flex; align-items: center;"
              matTooltip="expires: {{ accessToken?.expires | date:'dd. MMMM yyyy, HH:mm:ss' }}">
-          <div style="margin-bottom: -6px; padding-right: 6px;">
+          <div class="align-check-item">
             <div *ngIf="accessToken$ | async; else noValidAccessToken">
               <mat-icon class="check-color">check_circle_outline</mat-icon>
             </div>
@@ -33,7 +33,7 @@
       <div style="display: flex; align-items: stretch; justify-content: space-between;">
         <div style="border: 1px solid #ddd; padding: 2px 8px; border-radius: 32px; display: flex; align-items: center;"
              matTooltip="expires: {{ idToken?.expires | date:'dd. MMMM yyyy, HH:mm:ss' }}">
-          <div style="margin-bottom: -6px; padding-right: 6px;">
+          <div class="align-check-item">
             <div *ngIf="idToken$ | async; else noValidIdToken">
               <mat-icon class="check-color">check_circle_outline</mat-icon>
             </div>
@@ -53,7 +53,7 @@
       <div style="display: flex; align-items: stretch; justify-content: space-between;">
         <div style="border: 1px solid #ddd; padding: 2px 8px; border-radius: 32px; display: flex; align-items: center;"
              matTooltip="not implemented yet">
-          <div style="margin-bottom: -6px; padding-right: 6px;">
+          <div class="align-check-item">
             <mat-icon style="color: #ddd">highlight_off</mat-icon>
   <!--          <div *ngIf="idToken$ | async; else noValidAccessToken">-->
   <!--            <mat-icon class="check-color">check_circle_outline</mat-icon>-->
@@ -68,5 +68,6 @@
         <button mat-mini-fab color="primary" disabled><mat-icon>refresh</mat-icon></button>
       </div>
     </div>
+    <div>refresh token</div>
   </mat-card>
 </mat-card>

@@ -1,7 +1,7 @@
 {
   "openIdConfig": {
-    "issuer": "https://dev-308298.okta.com",
-    "clientId": "0oa3bhtdm4NptlAc8357"
+    "issuer": "https://demo.identityserver.io",
+    "clientId": "spa"
   },
   "showFlows": {
     "authCodePkce": true,

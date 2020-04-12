@@ -1,21 +1,26 @@
 <div [ngClass]="{'obsidian-dark': isDarkTheme$ | async}">
   <div class="mat-app-background"> <!-- sets background according to theme -->
 
-    <app-nav-bar></app-nav-bar>
+    <app-nav-bar class="sticky-navbar"></app-nav-bar>
 
-    <mat-sidenav-container [hasBackdrop]="true">
+    <mat-sidenav-container [hasBackdrop]="true" class="sidenav-container">
       <mat-sidenav mode="over" [(opened)]="opened" position="end" (closedStart)="onCloseSideNav()">
         <app-settings></app-settings>
       </mat-sidenav>
 
       <mat-sidenav-content>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="width-75-percent">
           <app-flows-list fxLayout="column" fxLayoutAlign="space-around" class="column-height login-width"></app-flows-list>
 
           <!--    <div class="vertical-divider"></div>-->
-          <mat-icon style="color: #888888">double_arrow</mat-icon>
+          <mat-icon class="arrow">double_arrow</mat-icon>
 
-          <app-visualizer class="fill-space-horizontal column-height" fxLayout="column"></app-visualizer>
+          <app-visualizer fxLayout="column" class="fill-space-horizontal column-height"></app-visualizer>
+
+          <mat-icon class="arrow">double_arrow</mat-icon>
+
+          <app-resource class="resource-width"></app-resource>
+
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

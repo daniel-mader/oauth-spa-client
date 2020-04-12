@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { showError } from '../../+state/app.actions';
 import { selectError } from '../../+state/app.selectors';
 
 @Component({
@@ -20,12 +21,14 @@ export class ErrorMessageComponent implements OnInit {
     this.error$.subscribe((error) => {
       if (error && error !== '') {
         this.showError(error);
+        this.store.dispatch(showError({message: undefined}));
       }
     });
   }
 
   showError(message: string) {
     this.snackBar.open(message, 'DISMISS', {
+      duration: 3000
     });
   }
 
