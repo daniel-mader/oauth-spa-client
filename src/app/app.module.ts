@@ -26,6 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from '../environments/environment';
 import { AppEffects } from './+state/app.effects';
 import { metaReducers, reducers } from './+state/reducers';
@@ -35,15 +36,16 @@ import { FlowsListComponent } from './flows-list/flows-list.component';
 import { AuthCodePkceFlowComponent } from './flows/auth-code-pkce-flow/auth-code-pkce-flow.component';
 import { ImplicitFlowComponent } from './flows/implicit-flow/implicit-flow.component';
 import { PasswordFlowComponent } from './flows/password-flow/password-flow.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
 import { SettingsComponent } from './navigation/settings/settings.component';
+import { ResourceComponent } from './resource/resource.component';
 import { DelayInterceptor } from './services/delay.interceptor';
 import { ErrorMessageComponent } from './shared/error-message/error-message.component';
 import { LoadingComponent } from './shared/loading/loading.component';
-import { VisualizerComponent } from './visualizer/visualizer.component';
 import { TokenStatusComponent } from './visualizer/token-status/token-status.component';
-import { ResourceComponent } from './resource/resource.component';
+import { VisualizerComponent } from './visualizer/visualizer.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { ResourceComponent } from './resource/resource.component';
     ErrorMessageComponent,
     LoadingComponent,
     TokenStatusComponent,
-    ResourceComponent
+    ResourceComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ import { ResourceComponent } from './resource/resource.component';
     FormsModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxSpinnerModule
   ],
   providers: [MatSnackBar, { provide: HTTP_INTERCEPTORS, useClass: DelayInterceptor, multi: true }],
   bootstrap: [AppComponent]
